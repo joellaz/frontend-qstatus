@@ -1,0 +1,10 @@
+node_modules/
+
+## editors
+/.idea
+/.vscode
+/*.code-workspace
+/.history
+
+## npm
+npm.debug.log
