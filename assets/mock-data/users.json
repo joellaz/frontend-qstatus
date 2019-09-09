@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "name": "Joëlle Zweekhorst",
+    "team_name": "TEP14",
+    "role": "trainee",
+    "manager_name": "Anneloes van der Meer"
+  },
+  {
+    "id": 2,
+    "name": "Paul Hofma",
+    "team_name": "TEP14",
+    "role": "trainee",
+    "manager_name": "Anneloes van der Meer"
+  },
+  {
+    "id": 3,
+    "name": "Arjan Hoogenboom",
+    "team_name": "TEP14",
+    "role": "trainee",
+    "manager_name": "Anneloes van der Meer"
+  },
+  {
+    "id": 4,
+    "name": "Joren Broekema",
+    "team_name": "TEP12",
+    "role": "trainee",
+    "manager_name": "Anne Spapens"
+  },
+  {
+    "id": 5,
+    "name": "Anneloes van der Meer",
+    "team_name": "TEP12",
+    "role": "manager"
+  }
+]
