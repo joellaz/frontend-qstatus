@@ -1,53 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+    <!-- Bootstrap inladen. -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
 
-  <!-- Bootstrap inladen. -->
-  <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- Eigen stylesheet inladen. -->
+    <link rel="stylesheet" type="text/css" href="./stylesheet.css" />
 
-  <!-- Eigen stylesheet inladen. -->
-  <link rel="stylesheet" type="text/css" href="./stylesheet.css" />
-</head>
+    <style>
+      .button {
+        display: block;
+      }
+    </style>
+  </head>
 
-<body>
+  <body>
+    <!-- Bootstrap nav bar. -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white border-bottom border-secondary"
+    >
+      <a class="navbar-brand" href="#">
+        <img
+          src="./assets/images/logoyc.svg"
+          width="90"
+          class="d-inline-block align-top"
+          alt=""
+        />
+      </a>
+    </nav>
 
-  <!-- Bootstrap nav bar. -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom border-secondary">
-    <a class="navbar-brand" href="#">
-      <img src="./assets/images/logoyc.svg" width="90" class="d-inline-block align-top" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-      aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!-- page content -->
+    <div style="margin:auto">
+      <div
+        class="card"
+        style="width: 20%; height:80%; margin:auto; margin-top:30px"
+      >
+        <h5 class="card-header">Who are you?</h5>
+        <div class="card-body">
+          <ul class="list-group">
+            <button
+              type="button"
+              class="list-group-item list-group-item-action"
+            >
+              Cras justo odio
+            </button>
+            <button
+              type="button"
+              class="list-group-item list-group-item-action"
+            >
+              Dapibus ac facilisis in
+            </button>
+            <button
+              type="button"
+              class="list-group-item list-group-item-action"
+            >
+              Morbi leo risus
+            </button>
+            <button
+              type="button"
+              class="list-group-item list-group-item-action"
+            >
+              Porta ac consectetur ac
+            </button>
+            <button
+              type="button"
+              class="list-group-item list-group-item-action"
+            >
+              Vestibulum at eros
+            </button>
+          </ul>
+        </div>
+      </div>
 
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Vragenlijst</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+      <center>
+        <div style="margin:auto, mt-2">
+          <button type="button" class="btn btn-primary" style="margin-top:30px">
+            Login
+          </button>
+        </div>
+      </center>
     </div>
-  </nav>
 
-  <!-- Dit laadt je aan de onderkand van de  body, want het heeft interactie met je html (DOM) -->
-  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
+    <!-- Dit laadt je aan de onderkant van de body, want het heeft interactie met je html (DOM) -->
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
