@@ -12,8 +12,17 @@ h1 {
   color: #ff7129;
   -webkit-font-smoothing: antialiased
 }
+h5 {
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  margin-top: 0;
+  margin-bottom: .5em;
+  color: #ff7129;
+  -webkit-font-smoothing: antialiased
+}
 
-p {
+div {
   font-family: 'Lato', sans-serif;
   font-style: normal;
 }
@@ -21,4 +30,14 @@ p {
 button {
   font-family: 'Lato', sans-serif;
   color: #ff7129;
+}
+
+.btn-default {
+  background-color: #ff7129;
+  color:#FFF;
+}
+
+.btn-default:hover {
+  background-color: #8ed066;
+  color:#FFF;
 }

@@ -31,8 +31,11 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
         </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li><a class="nav-link" href="./index.html">Login<span class="sr-only">(current)</span></a></li>
       </ul>
     </div>
   </nav>
@@ -41,7 +44,7 @@
   <script>
 
     // Fetching the question with id 8.
-    const request = fetch('http://localhost:8082/getquestion/8');
+    const request = fetch('http://localhost:8082/getquestion/9');
     request.then(response => {
       if (response.status === 200) {
         response.json().then(result => {
@@ -58,13 +61,15 @@
 
   <div align="center">
     <form>
-      <h1 id="myData">Vraag</h1>
+      <h1 id="myData" style="margin-top:50px">Vraag</h1>
 
       <p>Typ je antwoord in het antwoordveld.</p>
       <input type="text" name="Antwoord_open_vraag" style="font-size:12pt;height:200px;width:50%;" />
 
       </br></br>
-      <button type="button" class="btn btn-primary btn-lg">Submit</button>
+      <button type="button" class="btn btn-default" style="margin-top:30px">
+        Submit
+      </button>
     </form>
   </div>
 
