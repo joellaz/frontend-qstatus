@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<title>Open vraag</title>
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Document</title>
+  <title>Vragenlijst</title>
 
   <!-- Bootstrap inladen. -->
   <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
@@ -15,26 +16,35 @@
 
   <!-- Lato font inladen. -->
   <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-
-  <style>
-    .button {
-      display: block;
-    }
-  </style>
 </head>
 
 <body>
-  <!-- Bootstrap nav bar. -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom border-secondary">
     <a class="navbar-brand" href="#">
       <img src="./assets/images/logoyc.svg" width="90" class="d-inline-block align-top" alt="" />
     </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li><a class="nav-link" href="./index.html">Login<span class="sr-only">(current)</span></a></li>
+      </ul>
+    </div>
   </nav>
 
   <!-- page content -->
   <div style="margin:auto">
-    <div class="card" style="width: 20%; height:80%; margin:auto; margin-top:30px">
-      <h5 class="card-header">Who are you?</h5>
+    <div class="card border-0" style="width:18rem; margin:auto; margin-top:50px ">
+      <h1 class="card-header bg-transparent border-0" align="center">Wie ben jij?</h1>
+      <p align="center">Kies hier als wie je wil inloggen!</p>
       <div class="card-body">
         <ul class="list-group">
           <button type="button" class="list-group-item list-group-item-action">
@@ -58,7 +68,7 @@
 
     <center>
       <div style="margin:auto, mt-2">
-        <button type="button" class="btn btn-primary" style="margin-top:30px">
+        <button type="button" class="btn btn-default" style="margin-top:30px">
           Login
         </button>
       </div>
