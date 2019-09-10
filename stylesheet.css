@@ -4,7 +4,7 @@
   color: #515157;
 }
 h1 {
-  font-family: 'Lato', sans-serif;;
+  font-family: 'Lato', sans-serif;
   font-style: normal;
   font-weight: 900;
   margin-top: 0;
@@ -12,6 +12,8 @@ h1 {
   color: #ff7129;
   -webkit-font-smoothing: antialiased
 }
- {
-  display: flex;
+
+button {
+  font-family: 'Lato', sans-serif;
+  color: #ff7129;
 }
