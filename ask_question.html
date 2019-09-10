@@ -37,43 +37,36 @@
     </div>
   </nav>
 
-  <!-- GET vraag van database. -->
+  <!-- JAVASCRIPT: GET vraag from database. -->
   <script>
-    const request = fetch('http://localhost:8082/question');
 
+    // Fetching the question with id 8.
+    const request = fetch('http://localhost:8082/getquestion/8');
     request.then(response => {
       if (response.status === 200) {
         response.json().then(result => {
           jsonData = result.text;
           console.log(jsonData);
 
+          // Store acquired data in the right element (myData), so that it can be displayed.
           var mainContainer = document.getElementById("myData");
           mainContainer.innerHTML = jsonData;
-
         });
       }
     });
-
   </script>
 
-
-  <form>
-    <center>
+  <div align="center">
+    <form>
       <h1 id="myData">Vraag</h1>
 
-      </br>
-      br
-      </br>
-
+      <p>Typ je antwoord in het antwoordveld.</p>
       <input type="text" name="Antwoord_open_vraag" style="font-size:12pt;height:200px;width:50%;" />
 
-      </br>
-      </br>
+      </br></br>
       <button type="button" class="btn btn-primary btn-lg">Submit</button>
-
-  </form>
-
-  </center>
+    </form>
+  </div>
 
   <script src="./node_modules/jquery/dist/jquery.min.js"></script>
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
