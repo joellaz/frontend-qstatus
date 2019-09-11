@@ -51,6 +51,7 @@
       let sendableQuestion = {};
       sendableQuestion.title = "Vraag 1";
       sendableQuestion.text = mainContainer.value;
+
       const request = fetch('http://localhost:8082/postquestion', {
         method: 'POST',
         body: JSON.stringify(sendableQuestion),
@@ -73,10 +74,10 @@
       <p>Typ hier een nieuwe vraag voor je trainee.
         Geef aan of je hier een open antwoord wil, of een ja/nee antwoord.
       </p>
-      <input type="text" name="Open_vraag" style="font-size:12pt;width:70%;" />
+      <input type="text" id="newQuestion" style="font-size:12pt;width:70%;" />
 
       </br></br>
-      <button type="button" class="btn btn-default" style="margin-top:30px">
+      <button type="button" class="btn btn-default" style="margin-top:30px" onclick="sendQuestion()">
         Submit
       </button>
 

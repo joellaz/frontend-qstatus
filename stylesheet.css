@@ -41,3 +41,7 @@ button {
   background-color: #8ed066;
   color:#FFF;
 }
+
+.container {
+  display: flex; /* or inline-flex */
+}
