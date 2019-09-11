@@ -18,253 +18,210 @@
   <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 </head>
 
-  <!-- JAVASCRIPT: GET vraag from database. -->
-  <script>
+<!-- JAVASCRIPT: GET vraag from database. -->
+<script>
 
-    choosenUser = localStorage.getItem(choosenUser);
-    console.log(choosenUser);
-    // Store acquired data in the right element (myData), so that it can be displayed.
-    var mainContainer = document.getElementById("myData");
-    mainContainer.innerHTML = "Welkom terug " + choosenUser.username;
+  var choosenUser = localStorage.getItem(choosenUser);
+  console.log(choosenUser);
+  // Store acquired data in the right element (myData), so that it can be displayed.
+  var mainContainer = document.getElementById("myData");
+  mainContainer.innerHTML = "Welkom terug " + choosenUser;
 
-  </script>
+</script>
 
-        <style>
-          #ediv1 {
-            font-size: 120px;
-          }
+<style>
+  #ediv1 {
+    font-size: 120px;
+  }
 
-          #idiv1 {
-            font-size: 120px;
-          }
+  #idiv1 {
+    font-size: 120px;
+  }
 
-          #fdiv1 {
-            font-size: 120px;
-          }
+  #fdiv1 {
+    font-size: 120px;
+  }
 
-          #sdiv1 {
-            font-size: 120px;
-          }
+  #sdiv1 {
+    font-size: 120px;
+  }
 
-          .rotated {
-            transform: rotate(300grad);
-          }
-        </style>
-        <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-        <body>
-          <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom border-secondary">
-            <a class="navbar-brand" href="#">
-              <img src="./assets/images/logoyc.svg" width="90" class="d-inline-block align-top" alt="" />
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-              aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                  <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-              </ul>
-              <ul class="navbar-nav ml-auto">
-                <li>
-                  <a class="nav-link" href="./index.html">Login<span class="sr-only">(current)</span></a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-
-          <!-- JAVASCRIPT: GET vraag from database. -->
-          <script>
-            // Fetching the question with id 8.
-            const request = fetch("http://localhost:8082/getquestion/1");
-            request.then(response => {
-              if (response.status === 200) {
-                response.json().then(result => {
-                  jsonData = result.text;
-                  console.log(jsonData);
-
-                  // Store acquired data in the right element (myData), so that it can be displayed.
-                  var mainContainer = document.getElementById("myData");
-                  mainContainer.innerHTML = jsonData;
-                });
-              }
-            });
-          </script>
-
-          <div align="center">
-            <div class="flex-container">
-              <div class="card border-0" style="flex-grow: 3">
-                <div class="card-header bg-transparent border-0">
-                  <h1 id="myData">Welkom terug Trainee!</h1>
-                </div>
-                <div class="card-body">
-                  <p class="card-text">hoi</p>
-                  <p class="card-text">hoi</p>
-                  <p class="card-text">hoi</p>
-                </div>
-              </div>
-              <div style="flex-grow: 4">
-
-                EQ
-                <div id="ediv1" class="fa rotated"></div>
-
-                <script>
-                  function echargebattery(qstate) {
-                    if (qstate < 0.2) {
-                      var a;
-                      a = document.getElementById("ediv1");
-                      a.style.color = "#ff0000";
-                      a.innerHTML = "&#xf244;";
-                    } else if (qstate < 0.4) {
-                      var b;
-                      b = document.getElementById("ediv1");
-                      b.style.color = "#ff7129";
-                      b.innerHTML = "&#xf243;";
-                    } else if (qstate < 0.6) {
-                      var c;
-                      c = document.getElementById("ediv1");
-                      c.style.color = "#fff700";
-                      c.innerHTML = "&#xf242;";
-                    } else if (qstate < 0.8) {
-                      var d;
-                      d = document.getElementById("div1");
-                      d.style.color = "#99ff00";
-                      d.innerHTML = "&#xf241;";
-                    } else {
-                      var e;
-                      e = document.getElementById("ediv1");
-                      e.style.color = "#8ed066";
-                      e.innerHTML = "&#xf240;";
-                    }
-                  }
-
-                  echargebattery(0.3);
-                </script>
-                IQ:
-                <div id="idiv1" class="fa rotated"></div>
-
-                <script>
-                  function ichargebattery(qstate) {
-                    if (qstate < 0.2) {
-                      var a;
-                      a = document.getElementById("idiv1");
-                      a.style.color = "#ff0000";
-                      a.innerHTML = "&#xf244;";
-                    } else if (qstate < 0.4) {
-                      var b;
-                      b = document.getElementById("idiv1");
-                      b.style.color = "#ff7129";
-                      b.innerHTML = "&#xf243;";
-                    } else if (qstate < 0.6) {
-                      var c;
-                      c = document.getElementById("idiv1");
-                      c.style.color = "#fff700";
-                      c.innerHTML = "&#xf242;";
-                    } else if (qstate < 0.8) {
-                      var d;
-                      d = document.getElementById("idiv1");
-                      d.style.color = "#99ff00";
-                      d.innerHTML = "&#xf241;";
-                    } else {
-                      var e;
-                      e = document.getElementById("idiv1");
-                      e.style.color = "#8ed066";
-                      e.innerHTML = "&#xf240;";
-                    }
-                  }
-
-                  ichargebattery(0.5);
-                </script>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                SQ:
-                <div id="sdiv1" class="fa rotated"></div>
-
-                <script>
-                  function schargebattery(qstate) {
-                    if (qstate < 0.2) {
-                      var a;
-                      a = document.getElementById("sdiv1");
-                      a.style.color = "#ff0000";
-                      a.innerHTML = "&#xf244;";
-                    } else if (qstate < 0.4) {
-                      var b;
-                      b = document.getElementById("sdiv1");
-                      b.style.color = "#ff7129";
-                      b.innerHTML = "&#xf243;";
-                    } else if (qstate < 0.6) {
-                      var c;
-                      c = document.getElementById("sdiv1");
-                      c.style.color = "#fff700";
-                      c.innerHTML = "&#xf242;";
-                    } else if (qstate < 0.8) {
-                      var d;
-                      d = document.getElementById("sdiv1");
-                      d.style.color = "#99ff00";
-                      d.innerHTML = "&#xf241;";
-                    } else {
-                      var e;
-                      e = document.getElementById("sdiv1");
-                      e.style.color = "#8ed066";
-                      e.innerHTML = "&#xf240;";
-                    }
-                  }
-
-                  schargebattery(0.7);
-                </script>
-                FQ:
-                <div id="fdiv1" class="fa rotated"></div>
-
-                <script>
-                  function fchargebattery(qstate) {
-                    if (qstate < 0.2) {
-                      var a;
-                      a = document.getElementById("fdiv1");
-                      a.style.color = "#ff0000";
-                      a.innerHTML = "&#xf244;";
-                    } else if (qstate < 0.4) {
-                      var b;
-                      b = document.getElementById("fdiv1");
-                      b.style.color = "#ff7129";
-                      b.innerHTML = "&#xf243;";
-                    } else if (qstate < 0.6) {
-                      var c;
-                      c = document.getElementById("fdiv1");
-                      c.style.color = "#fff700";
-                      c.innerHTML = "&#xf242;";
-                    } else if (qstate < 0.8) {
-                      var d;
-                      d = document.getElementById("fdiv1");
-                      d.style.color = "#99ff00";
-                      d.innerHTML = "&#xf241;";
-                    } else {
-                      var e;
-                      e = document.getElementById("fdiv1");
-                      e.style.color = "#8ed066";
-                      e.innerHTML = "&#xf240;";
-                    }
-                  }
-
-                  fchargebattery(0);
-                </script>
+  .rotated {
+    transform: rotate(300grad);
+  }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 
-
-              </div>
-            </div>
-          </div>
+<div align="center">
+  <div class="flex-container">
+    <div class="card border-0" style="flex-grow: 3">
+      <div class="card-header bg-transparent border-0">
+        <h1 id="myData">Welkom terug Trainee!</h1>
+      </div>
+      <div class="card-body">
+        <p class="card-text">hoi</p>
+        <p class="card-text">hoi</p>
+        <p class="card-text">hoi</p>
       </div>
     </div>
+    <div style="flex-grow: 4">
 
-    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      EQ:
+      <div id="ediv1" class="fa rotated"></div>
+
+      <script>
+        function echargebattery(qstate) {
+          if (qstate < 0.2) {
+            var a;
+            a = document.getElementById("ediv1");
+            a.style.color = "#ff0000";
+            a.innerHTML = "&#xf244;";
+          } else if (qstate < 0.4) {
+            var b;
+            b = document.getElementById("ediv1");
+            b.style.color = "#ff7129";
+            b.innerHTML = "&#xf243;";
+          } else if (qstate < 0.6) {
+            var c;
+            c = document.getElementById("ediv1");
+            c.style.color = "#fff700";
+            c.innerHTML = "&#xf242;";
+          } else if (qstate < 0.8) {
+            var d;
+            d = document.getElementById("div1");
+            d.style.color = "#99ff00";
+            d.innerHTML = "&#xf241;";
+          } else {
+            var e;
+            e = document.getElementById("ediv1");
+            e.style.color = "#8ed066";
+            e.innerHTML = "&#xf240;";
+          }
+
+          echargebattery(0.3);
+      </script>
+      IQ:
+      <div id="idiv1" class="fa rotated"></div>
+
+      <script>
+            function ichargebattery(qstate) {
+              if (qstate < 0.2) {
+                var a;
+                a = document.getElementById("idiv1");
+                a.style.color = "#ff0000";
+                a.innerHTML = "&#xf244;";
+              } else if (qstate < 0.4) {
+                var b;
+                b = document.getElementById("idiv1");
+                b.style.color = "#ff7129";
+                b.innerHTML = "&#xf243;";
+              } else if (qstate < 0.6) {
+                var c;
+                c = document.getElementById("idiv1");
+                c.style.color = "#fff700";
+                c.innerHTML = "&#xf242;";
+              } else if (qstate < 0.8) {
+                var d;
+                d = document.getElementById("idiv1");
+                d.style.color = "#99ff00";
+                d.innerHTML = "&#xf241;";
+              } else {
+                var e;
+                e = document.getElementById("idiv1");
+                e.style.color = "#8ed066";
+                e.innerHTML = "&#xf240;";
+              }
+            }
+
+            ichargebattery(0.5);
+      </script>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      SQ:
+      <div id="sdiv1" class="fa rotated"></div>
+
+      <script>
+            function schargebattery(qstate) {
+              if (qstate < 0.2) {
+                var a;
+                a = document.getElementById("sdiv1");
+                a.style.color = "#ff0000";
+                a.innerHTML = "&#xf244;";
+              } else if (qstate < 0.4) {
+                var b;
+                b = document.getElementById("sdiv1");
+                b.style.color = "#ff7129";
+                b.innerHTML = "&#xf243;";
+              } else if (qstate < 0.6) {
+                var c;
+                c = document.getElementById("sdiv1");
+                c.style.color = "#fff700";
+                c.innerHTML = "&#xf242;";
+              } else if (qstate < 0.8) {
+                var d;
+                d = document.getElementById("sdiv1");
+                d.style.color = "#99ff00";
+                d.innerHTML = "&#xf241;";
+              } else {
+                var e;
+                e = document.getElementById("sdiv1");
+                e.style.color = "#8ed066";
+                e.innerHTML = "&#xf240;";
+              }
+            }
+
+            schargebattery(0.7);
+      </script>
+      FQ:
+      <div id="fdiv1" class="fa rotated"></div>
+
+      <script>
+          function fchargebattery(qstate) {
+            if (qstate < 0.2) {
+              var a;
+              a = document.getElementById("fdiv1");
+              a.style.color = "#ff0000";
+              a.innerHTML = "&#xf244;";
+            } else if (qstate < 0.4) {
+              var b;
+              b = document.getElementById("fdiv1");
+              b.style.color = "#ff7129";
+              b.innerHTML = "&#xf243;";
+            } else if (qstate < 0.6) {
+              var c;
+              c = document.getElementById("fdiv1");
+              c.style.color = "#fff700";
+              c.innerHTML = "&#xf242;";
+            } else if (qstate < 0.8) {
+              var d;
+              d = document.getElementById("fdiv1");
+              d.style.color = "#99ff00";
+              d.innerHTML = "&#xf241;";
+            } else {
+              var e;
+              e = document.getElementById("fdiv1");
+              e.style.color = "#8ed066";
+              e.innerHTML = "&#xf240;";
+            }
+          }
+
+          fchargebattery(0);
+      </script>
+
+
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
