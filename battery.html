@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html>
   <style>
-    #div1 {
+    #ediv1 {
+     font-size:120px;
+        }
+    #idiv1 {
+     font-size:120px;
+        }
+    #fdiv1 {
+     font-size:120px;
+        }
+    #sdiv1 {
      font-size:120px;
         }
     .rotated {
@@ -19,25 +28,23 @@
     <br>
     <br>
     <br>
-    <div id="div1" class="fa rotated"></div></div>
+    <div id="ediv1" class="fa rotated"></div></div>
 
     <script>
-      function chargebattery() {
-        qstate = 0.1;
-
+      function echargebattery(qstate) {
         if (qstate < 0.2) {
           var a;
-          a = document.getElementById("div1");
+          a = document.getElementById("ediv1");
           a.style.color = "#ff0000";
           a.innerHTML = "&#xf244;";
         } else if (qstate < 0.4) {
           var b;
-          b = document.getElementById("div1");
+          b = document.getElementById("ediv1");
           b.style.color = "#ff7129";
           b.innerHTML = "&#xf243;";
         } else if (qstate < 0.6) {
           var c;
-          c = document.getElementById("div1");
+          c = document.getElementById("ediv1");
           c.style.color = "#fff700";
           c.innerHTML = "&#xf242;";
         } else if (qstate < 0.8) {
@@ -47,12 +54,115 @@
           d.innerHTML = "&#xf241;";
         } else {
           var e;
-          e = document.getElementById("div1");
+          e = document.getElementById("ediv1");
           e.style.color = "#8ed066";
           e.innerHTML = "&#xf240;";
         }
       }
-      chargebattery();
+
+      echargebattery(0.3);
     </script>
+    <div id="idiv1" class="fa rotated"></div></div>
+
+    <script>
+      function ichargebattery(qstate) {
+        if (qstate < 0.2) {
+          var a;
+          a = document.getElementById("idiv1");
+          a.style.color = "#ff0000";
+          a.innerHTML = "&#xf244;";
+        } else if (qstate < 0.4) {
+          var b;
+          b = document.getElementById("idiv1");
+          b.style.color = "#ff7129";
+          b.innerHTML = "&#xf243;";
+        } else if (qstate < 0.6) {
+          var c;
+          c = document.getElementById("idiv1");
+          c.style.color = "#fff700";
+          c.innerHTML = "&#xf242;";
+        } else if (qstate < 0.8) {
+          var d;
+          d = document.getElementById("idiv1");
+          d.style.color = "#99ff00";
+          d.innerHTML = "&#xf241;";
+        } else {
+          var e;
+          e = document.getElementById("idiv1");
+          e.style.color = "#8ed066";
+          e.innerHTML = "&#xf240;";
+        }
+      }
+
+      ichargebattery(0.5);
+    </script>
+        <div id="sdiv1" class="fa rotated"></div></div>
+
+        <script>
+          function schargebattery(qstate) {
+            if (qstate < 0.2) {
+              var a;
+              a = document.getElementById("sdiv1");
+              a.style.color = "#ff0000";
+              a.innerHTML = "&#xf244;";
+            } else if (qstate < 0.4) {
+              var b;
+              b = document.getElementById("sdiv1");
+              b.style.color = "#ff7129";
+              b.innerHTML = "&#xf243;";
+            } else if (qstate < 0.6) {
+              var c;
+              c = document.getElementById("sdiv1");
+              c.style.color = "#fff700";
+              c.innerHTML = "&#xf242;";
+            } else if (qstate < 0.8) {
+              var d;
+              d = document.getElementById("sdiv1");
+              d.style.color = "#99ff00";
+              d.innerHTML = "&#xf241;";
+            } else {
+              var e;
+              e = document.getElementById("sdiv1");
+              e.style.color = "#8ed066";
+              e.innerHTML = "&#xf240;";
+            }
+          }
+
+          schargebattery(0.7);
+        </script>
+            <div id="fdiv1" class="fa rotated"></div></div>
+
+            <script>
+              function fchargebattery(qstate) {
+                if (qstate < 0.2) {
+                  var a;
+                  a = document.getElementById("fdiv1");
+                  a.style.color = "#ff0000";
+                  a.innerHTML = "&#xf244;";
+                } else if (qstate < 0.4) {
+                  var b;
+                  b = document.getElementById("fdiv1");
+                  b.style.color = "#ff7129";
+                  b.innerHTML = "&#xf243;";
+                } else if (qstate < 0.6) {
+                  var c;
+                  c = document.getElementById("fdiv1");
+                  c.style.color = "#fff700";
+                  c.innerHTML = "&#xf242;";
+                } else if (qstate < 0.8) {
+                  var d;
+                  d = document.getElementById("fdiv1");
+                  d.style.color = "#99ff00";
+                  d.innerHTML = "&#xf241;";
+                } else {
+                  var e;
+                  e = document.getElementById("fdiv1");
+                  e.style.color = "#8ed066";
+                  e.innerHTML = "&#xf240;";
+                }
+              }
+
+              fchargebattery(0.9);
+            </script>
   </body>
 </html>
