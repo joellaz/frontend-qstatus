@@ -43,20 +43,12 @@
   <!-- JAVASCRIPT: GET vraag from database. -->
   <script>
 
-    // Fetching the question with id 8.
-    const request = fetch('http://localhost:8082/getquestion/1');
-    request.then(response => {
-      if (response.status === 200) {
-        response.json().then(result => {
-          jsonData = result.text;
-          console.log(jsonData);
+    choosenUser = localStorage.getItem(choosenUser);
+    console.log(choosenUser);
+    // Store acquired data in the right element (myData), so that it can be displayed.
+    var mainContainer = document.getElementById("myData");
+    mainContainer.innerHTML = "Welkom terug " + choosenUser.username;
 
-          // Store acquired data in the right element (myData), so that it can be displayed.
-          var mainContainer = document.getElementById("myData");
-          mainContainer.innerHTML = jsonData;
-        });
-      }
-    });
   </script>
 
   <div align="center">

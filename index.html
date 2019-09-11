@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Open vraag</title>
+<title>Login</title>
 
 <head>
   <meta charset="UTF-8" />
@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body onload="receiveUsers()">
   <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom border-secondary">
     <a class="navbar-brand" href="#">
       <img src="./assets/images/logoyc.svg" width="90" class="d-inline-block align-top" alt="" />
@@ -40,6 +40,41 @@
     </div>
   </nav>
 
+  <script>
+
+    var choosenUser;
+    var allUsers;
+
+    function receiveUsers() {
+
+      // Fetching all users in database.
+      const request = fetch('http://localhost:8082/trainee/all');
+      request.then(response => {
+        if (response.status === 200) {
+          response.json().then(result => {
+            allUsers = result;
+            for (var i = 0; i < result.length; i++) {
+
+              // Store acquired data in the right element, so that it can be displayed.
+              var mainContainer = document.getElementById(i);
+              mainContainer.innerHTML = result[i].username;
+            }
+          });
+        }
+      });
+    }
+
+    function setChoosenUser(clickedId) {
+      choosenUser = allUsers[clickedId];
+    }
+
+    function sendChoosenUser() {
+      console.log(choosenUser);
+      localStorage.setItem('choosenUser', choosenUser);
+      location.href = "./dashboard_trainee.html";
+    }
+  </script>
+
   <!-- page content -->
   <div style="margin:auto">
     <div class="card border-0" style="width:18rem; margin:auto; margin-top:50px ">
@@ -47,20 +82,13 @@
       <p align="center">Kies hier als wie je wil inloggen!</p>
       <div class="card-body">
         <ul class="list-group">
-          <button type="button" class="list-group-item list-group-item-action">
-            Cras justo odio
+          <button type="button" id="0" class="list-group-item list-group-item-action" onclick="setChoosenUser(this.id)">
           </button>
-          <button type="button" class="list-group-item list-group-item-action">
-            Dapibus ac facilisis in
+          <button type="button" id="1" class="list-group-item list-group-item-action" onclick="setChoosenUser(this.id)">
           </button>
-          <button type="button" class="list-group-item list-group-item-action">
-            Morbi leo risus
+          <button type="button" id="2" class="list-group-item list-group-item-action" onclick="setChoosenUser(this.id)">
           </button>
-          <button type="button" class="list-group-item list-group-item-action">
-            Porta ac consectetur ac
-          </button>
-          <button type="button" class="list-group-item list-group-item-action">
-            Vestibulum at eros
+          <button type="button" id="3" class="list-group-item list-group-item-action" onclick="setChoosenUser(this.id)">
           </button>
         </ul>
       </div>
@@ -68,7 +96,7 @@
 
     <center>
       <div style="margin:auto, mt-2">
-        <button type="button" class="btn btn-default" style="margin-top:30px">
+        <button type="submit" class="btn btn-default" style="margin-top:30px" onclick="sendChoosenUser()">
           Login
         </button>
       </div>
