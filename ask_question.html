@@ -40,41 +40,68 @@
     </div>
   </nav>
 
-  <!-- JAVASCRIPT: GET vraag from database. -->
+
   <script>
+    function sendAnswer() {
+      var deDom = document.getElementsByTagName("html");
+      console.log(deDom);
+      var mainContainer = document.getElementById("newAnswer");
+      console.log(mainContainer.value);
 
-    // Fetching the question with id 8.
-    const request = fetch('http://localhost:8082/getquestion/1');
-    request.then(response => {
-      if (response.status === 200) {
-        response.json().then(result => {
-          jsonData = result.text;
-          console.log(jsonData);
+      let sendableAnswer = {};
+      sendableAnswer.title = "openQuestion";
+      sendableAnswer.text = mainContainer.value;
 
-          // Store acquired data in the right element (myData), so that it can be displayed.
-          var mainContainer = document.getElementById("myData");
-          mainContainer.innerHTML = jsonData;
-        });
-      }
-    });
+      const request = fetch('http://localhost:8082/openanswer', {
+        method: 'POST',
+        body: JSON.stringify(sendableAnswer),
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
 
-
-
+      request.then(response => {
+        if (response.status === 201) {
+          response.json().then(result => console.log("Question succesfully added: " + result));
+        }
+      });
+    }
   </script>
 
   <div align="center">
     <form>
       <h1 id="myData" style="margin-top:50px">Vraag</h1>
-
-      <p>Typ je antwoord in het antwoordveld.</p>
-      <input type="text" name="Antwoord_open_vraag" style="font-size:12pt;height:200px;width:50%;" />
+      <button type="button" onclick="loadDoc()">Laat de vraag zien en <br>typ je antwoord hieronder.</button>
+      <p></p>
+      <input type="text" name="newAnswer" style="font-size:12pt;height:200px;width:50%;"/>
 
       </br></br>
-      <button type="button" class="btn btn-default" style="margin-top:30px">
+      <button type="button" class="btn btn-default" style="margin-top:30px" onclick="sendAnswer()">
         Submit
       </button>
     </form>
   </div>
+
+  <script>
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var vraag =  this.responseText;
+          var string = JSON.parse(vraag)
+          // welke variable meot hij hieraanroepeN?
+          document.getElementById("myData").innerHTML = string.text;
+        }
+      };
+
+    // welke variabelen
+    var identify = //id ergens vandaag???
+    xhttp.open("GET", "http://localhost:8082/openquestion/{" + identify + "}", true);
+    xhttp.send();
+  }
+  </script>
+
+
 
   <script src="./node_modules/jquery/dist/jquery.min.js"></script>
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
