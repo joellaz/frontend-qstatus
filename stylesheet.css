@@ -49,3 +49,23 @@ button {
   flex-direction: row;
   justify-content: center;
 }
+
+#ediv1 {
+  font-size: 120px;
+}
+
+#idiv1 {
+  font-size: 120px;
+}
+
+#fdiv1 {
+  font-size: 120px;
+}
+
+#sdiv1 {
+  font-size: 120px;
+}
+
+.rotated {
+  transform: rotate(300grad);
+}

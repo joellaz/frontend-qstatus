@@ -46,9 +46,8 @@
     var allUsers;
 
     function receiveUsers() {
-
       // Fetching all users in database.
-      const request = fetch('http://localhost:8082/trainee/all');
+      const request = fetch('http://localhost:8082/user/all');
       request.then(response => {
         if (response.status === 200) {
           response.json().then(result => {
@@ -68,10 +67,40 @@
       choosenUser = allUsers[clickedId];
     }
 
+    function isTrainee(allTrainees, trainee) {
+      var traineeDetected = false;
+      console.log(allTrainees);
+      for (var i = 0; i < allTrainees.length; i++) {
+        if (allTrainees[i].id === trainee.id) {
+          traineeDetected = true;
+        }
+      }
+      console.log(traineeDetected);
+      return traineeDetected;
+    }
+
     function sendChoosenUser() {
-      console.log(choosenUser);
-      localStorage.setItem('choosenUser', choosenUser);
-      location.href = "./dashboard_trainee.html";
+      var allTrainees;
+      const request = fetch('http://localhost:8082/trainee/all');
+      request.then(response => {
+        if (response.status === 200) {
+          response.json().then(result => {
+
+            allTrainees = result;
+            console.log(allTrainees);
+            isTrainee = isTrainee(allTrainees, choosenUser);
+            if (isTrainee) {
+              localStorage.setItem('choosenUser', JSON.stringify(choosenUser));
+              localStorage.setItem('userType', "trainee");
+              location.href = "./dashboard_trainee.html";
+            } else {
+              localStorage.setItem('choosenUser', JSON.stringify(choosenUser));
+              localStorage.setItem('userType', "manager");
+              location.href = "./dashboard_manager.html";
+            }
+          })
+        }
+      });
     }
   </script>
 
@@ -89,6 +118,8 @@
           <button type="button" id="2" class="list-group-item list-group-item-action" onclick="setChoosenUser(this.id)">
           </button>
           <button type="button" id="3" class="list-group-item list-group-item-action" onclick="setChoosenUser(this.id)">
+          </button>
+          <button type="button" id="4" class="list-group-item list-group-item-action" onclick="setChoosenUser(this.id)">
           </button>
         </ul>
       </div>
