@@ -40,12 +40,11 @@
     </div>
   </nav>
 
-
   <!-- JAVASCRIPT: GET vraag from database. -->
   <script>
 
     // Fetching the question with id 8.
-    const request = fetch('http://localhost:8082/getquestion/1');
+    const request = fetch('http://localhost:8082/openquestion/6');
     request.then(response => {
       if (response.status === 200) {
         response.json().then(result => {
@@ -58,6 +57,7 @@
         });
       }
     });
+
     function sendAnswer() {
       var deDom = document.getElementsByTagName("html");
       console.log(deDom);
@@ -65,7 +65,8 @@
       console.log(mainContainer.value);
 
       let sendableAnswer = {};
-      sendableAnswer.title = "openQuestion";
+      sendableAnswer.title = "openquestion";
+
       sendableAnswer.text = mainContainer.value;
 
       const request = fetch('http://localhost:8082/openanswer', {
@@ -75,30 +76,9 @@
           'Content-Type': 'application/json',
         }
       });
-
-      request.then(response => {
-        if (response.status === 201) {
-          response.json().then(result => console.log("Question succesfully added: " + result));
-        }
-      });
     }
-  </script>
 
-  <div align="center">
-    <form>
-      <h1 id="myData" style="margin-top:50px">Vraag</h1>
-      <button type="button" onclick="loadDoc()">Laat de vraag zien en <br>typ je antwoord hieronder.</button>
-      <p></p>
-      <input type="text" name="newAnswer" style="font-size:12pt;height:200px;width:50%;" />
-
-      </br></br>
-      <button type="button" class="btn btn-default" style="margin-top:30px" onclick="sendAnswer()">
-        Submit
-      </button>
-    </form>
-  </div>
-
-  <script>
+    // Wat gebeurt hier?
     function loadDoc() {
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function () {
@@ -117,8 +97,19 @@
     }
   </script>
 
+  <div align="center">
+    <form>
+      <h1 id="myData" style="margin-top:50px">Vraag</h1>
+      <!--  <button type="button" onclick="loadDoc()">Laat de vraag zien en <br>typ je antwoord hieronder.</button>  -->
+      <p>Typ je antwoord in het antwoordveld.</p>
+      <input type="text" name="newAnswer" style="font-size:12pt;height:200px;width:50%;" />
 
-
+      </br></br>
+      <button type="button" class="btn btn-default" style="margin-top:30px" onclick="sendAnswer()">
+        Submit
+      </button>
+    </form>
+  </div>
   <script src="./node_modules/jquery/dist/jquery.min.js"></script>
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 

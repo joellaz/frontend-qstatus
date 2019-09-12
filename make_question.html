@@ -49,22 +49,36 @@
       console.log(mainContainer.value);
 
       let sendableQuestion = {};
-      sendableQuestion.title = "Vraag 1";
       sendableQuestion.text = mainContainer.value;
 
-      const request = fetch('http://localhost:8082/question', {
-        method: 'POST',
-        body: JSON.stringify(sendableQuestion),
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
+      if (document.getElementById('openQ').checked) {
+        const request = fetch('http://localhost:8082/openquestion', {
+          method: 'POST',
+          body: JSON.stringify(sendableQuestion),
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+      } else if (document.getElementById('closedQ').checked) {
+
+        const request = fetch('http://localhost:8082/closedquestion', {
+          method: 'POST',
+          body: JSON.stringify(sendableQuestion),
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+      }
+
+      location.href = "./make_question.html";
 
       request.then(response => {
         if (response.status === 201) {
           response.json().then(result => console.log("Question succesfully added: " + result));
         }
       });
+
+
     }
   </script>
 
@@ -72,12 +86,32 @@
     <form>
       <h1 style="margin-top:50px">Stel een nieuwe vraag</h1>
       <p>Typ hier een nieuwe vraag voor je trainee.
-        Geef aan of je hier een open antwoord wil, of een ja/nee antwoord.
+        Geef aan of je hier een open antwoord wil, of een gesloten antwoord (eens/oneens).
       </p>
       <input type="text" id="newQuestion" style="font-size:12pt;width:70%;" />
+      <div class="card-body" style="margin-top:40px">
+        <ul class="list-group" style="width:20%;">
+          <button type="button" id="0" class="list-group-item list-group-item-action">
+            <div class="form-check" align="left">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="openQ" value="option1">
+              <label class="form-check-label" for="exampleRadios1">
+                &nbsp; Open antwoord.
+              </label>
+            </div>
+          </button>
+          <button type="button" id="0" class="list-group-item list-group-item-action">
+            <div class="form-check" align="left">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="closedQ" value="option1">
+              <label class="form-check-label" for="exampleRadios1">
+                &nbsp; Gesloten antwoord.
+              </label>
+            </div>
+          </button>
+        </ul>
+      </div>
 
       </br></br>
-      <button type="button" class="btn btn-default" style="margin-top:30px" onclick="sendQuestion()">
+      <button type="button" class="btn btn-default" onclick="sendQuestion()">
         Submit
       </button>
 
