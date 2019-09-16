@@ -18,6 +18,13 @@ Optionally: install VSCode extensions
 npm install
 ```
 
+"EditorConfig for VS Code"
+
+### Chrome browser without cors filter (mac)
+```sh
+open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security
+```
+
 ### Running the application
 
 ```sh
