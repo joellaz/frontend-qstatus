@@ -41,9 +41,8 @@
   </nav>
 
   <script>
-
-    // Fetching the question with id 8.
-    const request = fetch('http://localhost:8082/getquestion/1');
+    // Fetching the question with id.
+    const request = fetch('http://localhost:8082/closedquestion/4');
     request.then(response => {
       if (response.status === 200) {
         response.json().then(result => {
