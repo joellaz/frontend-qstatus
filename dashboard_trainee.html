@@ -29,13 +29,13 @@
     <!-- JAVASCRIPT: GET vraag from database. -->
     <script>
       window.onload = function() {
-        user = JSON.parse(localStorage.getItem('choosenUser'));
+        user = JSON.parse(localStorage.getItem("choosenUser"));
         console.log(user);
         // Store acquired data in the right element (myData), so that it can be displayed.
 
         if (user !== null) {
-          var mainContainer = document.getElementById('myData');
-          mainContainer.innerHTML = 'Welkom terug ' + user.username + '!';
+          var mainContainer = document.getElementById("myData");
+          mainContainer.innerHTML = "Welkom terug " + user.username + "!";
           console.log(mainContainer);
           console.log(user);
         }
@@ -62,7 +62,7 @@
                 Ga naar vragenlijst
               </button></a>
             </div>
-          </center>
+          </div>
         </div>
       <yc-qstates></yc-qstates>
     </div>
