@@ -17,7 +17,6 @@ Optionally: install VSCode extensions
 ```sh
 npm install
 ```
-
 "EditorConfig for VS Code"
 
 ### Chrome browser without cors filter (mac)
@@ -29,4 +28,5 @@ open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args
 
 ```sh
 npm run start
-```
+
+
