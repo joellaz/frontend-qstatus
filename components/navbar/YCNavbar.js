@@ -29,7 +29,7 @@ class YCNavbar extends LitElement {
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="./dashboard_trainee.html"
+              <a class="nav-link" href="javascript:"
                 >Home <span class="sr-only">(current)</span></a
               >
             </li>
