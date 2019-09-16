@@ -18,39 +18,34 @@
       href="https://fonts.googleapis.com/css?family=Lato&display=swap"
       rel="stylesheet"
     />
-
-    <!-- yc-qstatus -->
-    <script type="module" src="./components/yc-qstates/yc-qstates.js"></script>
-
-    <!-- Navbar inladen -->
-    <script type="module" src="./components/navbar/YCNavbar.js"></script>
-
     <!-- FA -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-  </head>
 
-  <!-- JAVASCRIPT: GET vraag from database. -->
-  <script>
-    window.onload = function() {
-      user = JSON.parse(localStorage.getItem('choosenUser'));
-      console.log(user);
-      // Store acquired data in the right element (myData), so that it can be displayed.
-
-      if (user !== null) {
-        var mainContainer = document.getElementById('myData');
-        mainContainer.innerHTML = 'Welkom terug ' + user.username + '!';
-        console.log(mainContainer);
+    <!-- yc-qstatus -->
+    <script type="module" src="./components/yc-qstates/yc-qstates.js"></script>
+    <!-- JAVASCRIPT: GET vraag from database. -->
+    <script>
+      window.onload = function() {
+        user = JSON.parse(localStorage.getItem('choosenUser'));
         console.log(user);
-      }
-    };
-  </script>
+        // Store acquired data in the right element (myData), so that it can be displayed.
+
+        if (user !== null) {
+          var mainContainer = document.getElementById('myData');
+          mainContainer.innerHTML = 'Welkom terug ' + user.username + '!';
+          console.log(mainContainer);
+          console.log(user);
+        }
+      };
+    </script>
+    <script type="module" src="./components/navbar/YCNavbar.js"></script>
+  </head>
 
   <body>
     <yc-navbar></yc-navbar>
-    <yc-qstates></yc-qstates>
 
     <div align="center">
       <div class="flex-container">
@@ -64,145 +59,7 @@
             <p class="card-text">hoi</p>
           </div>
         </div>
-        <div style="flex-grow: 4">
-          EQ:
-          <div id="ediv1" class="fa rotated"></div>
-          <script>
-            function echargebattery(qstate) {
-              if (qstate < 0.2) {
-                var a;
-                a = document.getElementById('ediv1');
-                a.style.color = '#ff0000';
-                a.innerHTML = '&#xf244;';
-              } else if (qstate < 0.4) {
-                var b;
-                b = document.getElementById('ediv1');
-                b.style.color = '#ff7129';
-                b.innerHTML = '&#xf243;';
-              } else if (qstate < 0.6) {
-                var c;
-                c = document.getElementById('ediv1');
-                c.style.color = '#fff700';
-                c.innerHTML = '&#xf242;';
-              } else if (qstate < 0.8) {
-                var d;
-                d = document.getElementById('div1');
-                d.style.color = '#99ff00';
-                d.innerHTML = '&#xf241;';
-              } else {
-                var e;
-                e = document.getElementById('ediv1');
-                e.style.color = '#8ed066';
-                e.innerHTML = '&#xf240;';
-              }
-            }
-            echargebattery(0.3);
-          </script>
-          IQ:
-          <div id="idiv1" class="fa rotated"></div>
-          <script>
-            function ichargebattery(qstate) {
-              if (qstate < 0.2) {
-                var a;
-                a = document.getElementById('idiv1');
-                a.style.color = '#ff0000';
-                a.innerHTML = '&#xf244;';
-              } else if (qstate < 0.4) {
-                var b;
-                b = document.getElementById('idiv1');
-                b.style.color = '#ff7129';
-                b.innerHTML = '&#xf243;';
-              } else if (qstate < 0.6) {
-                var c;
-                c = document.getElementById('idiv1');
-                c.style.color = '#fff700';
-                c.innerHTML = '&#xf242;';
-              } else if (qstate < 0.8) {
-                var d;
-                d = document.getElementById('idiv1');
-                d.style.color = '#99ff00';
-                d.innerHTML = '&#xf241;';
-              } else {
-                var e;
-                e = document.getElementById('idiv1');
-                e.style.color = '#8ed066';
-                e.innerHTML = '&#xf240;';
-              }
-            }
-            ichargebattery(0.5);
-          </script>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          SQ:
-          <div id="sdiv1" class="fa rotated"></div>
-          <script>
-            function schargebattery(qstate) {
-              if (qstate < 0.2) {
-                var a;
-                a = document.getElementById('sdiv1');
-                a.style.color = '#ff0000';
-                a.innerHTML = '&#xf244;';
-              } else if (qstate < 0.4) {
-                var b;
-                b = document.getElementById('sdiv1');
-                b.style.color = '#ff7129';
-                b.innerHTML = '&#xf243;';
-              } else if (qstate < 0.6) {
-                var c;
-                c = document.getElementById('sdiv1');
-                c.style.color = '#fff700';
-                c.innerHTML = '&#xf242;';
-              } else if (qstate < 0.8) {
-                var d;
-                d = document.getElementById('sdiv1');
-                d.style.color = '#99ff00';
-                d.innerHTML = '&#xf241;';
-              } else {
-                var e;
-                e = document.getElementById('sdiv1');
-                e.style.color = '#8ed066';
-                e.innerHTML = '&#xf240;';
-              }
-            }
-            schargebattery(0.7);
-          </script>
-          FQ:
-          <div id="fdiv1" class="fa rotated"></div>
-          <script>
-            function fchargebattery(qstate) {
-              if (qstate < 0.2) {
-                var a;
-                a = document.getElementById('fdiv1');
-                a.style.color = '#ff0000';
-                a.innerHTML = '&#xf244;';
-              } else if (qstate < 0.4) {
-                var b;
-                b = document.getElementById('fdiv1');
-                b.style.color = '#ff7129';
-                b.innerHTML = '&#xf243;';
-              } else if (qstate < 0.6) {
-                var c;
-                c = document.getElementById('fdiv1');
-                c.style.color = '#fff700';
-                c.innerHTML = '&#xf242;';
-              } else if (qstate < 0.8) {
-                var d;
-                d = document.getElementById('fdiv1');
-                d.style.color = '#99ff00';
-                d.innerHTML = '&#xf241;';
-              } else {
-                var e;
-                e = document.getElementById('fdiv1');
-                e.style.color = '#8ed066';
-                e.innerHTML = '&#xf240;';
-              }
-            }
-            fchargebattery(0);
-          </script>
-        </div>
+        <yc-qstates></yc-qstates>
       </div>
     </div>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
