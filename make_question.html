@@ -64,6 +64,45 @@
 
 
     }
+
+    function sendQuestionAndClose() {
+      var deDom = document.getElementsByTagName("html");
+      console.log(deDom);
+      var mainContainer = document.getElementById("newQuestion");
+      console.log(mainContainer.value);
+
+      let sendableQuestion = {};
+      sendableQuestion.text = mainContainer.value;
+
+      if (document.getElementById('openQ').checked) {
+        const request = fetch('http://localhost:8082/openquestion', {
+          method: 'POST',
+          body: JSON.stringify(sendableQuestion),
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+      } else if (document.getElementById('closedQ').checked) {
+
+        const request = fetch('http://localhost:8082/closedquestion', {
+          method: 'POST',
+          body: JSON.stringify(sendableQuestion),
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+      }
+
+      location.href = "./dashboard_manager.html";
+
+      request.then(response => {
+        if (response.status === 201) {
+          response.json().then(result => console.log("Question succesfully added: " + result));
+        }
+      });
+
+
+    }
   </script>
 
   <div align="center">
@@ -96,7 +135,10 @@
 
       </br></br>
       <button type="button" class="btn btn-default" onclick="sendQuestion()">
-        Submit
+        Vraag aanmaken
+      </button>
+      <button type="button" class="btn btn-default" onclick="sendQuestionAndClose()">
+        Vraag aanmaken en afsluiten
       </button>
 
     </form>
