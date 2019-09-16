@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html } from "lit-element";
 
 class YCNavbar extends LitElement {
   render() {
@@ -29,7 +29,7 @@ class YCNavbar extends LitElement {
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="./index.html"
+              <a class="nav-link" href="./dashboard_trainee.html"
                 >Home <span class="sr-only">(current)</span></a
               >
             </li>
@@ -51,4 +51,4 @@ class YCNavbar extends LitElement {
   }
 }
 
-customElements.define('yc-navbar', YCNavbar);
+customElements.define("yc-navbar", YCNavbar);
