@@ -20,6 +20,7 @@
 
   window.onload = function () {
     user = JSON.parse(localStorage.getItem('choosenUser'));
+    questionlists = JSON.parse()
     console.log(user);
     // Store acquired data in the right element (myData), so that it can be displayed.
 
@@ -28,8 +29,21 @@
       mainContainer.innerHTML = "Welkom terug " + user.username + "!";
       console.log(mainContainer);
       console.log(user)
-    }
+
+      var listDiv = document.getElementById('list-puntate');
+      var ul=document.createElement('ul');
+      for (var i = 0; i < data.list.length; ++i) {
+            var li=document.createElement('li');
+            li.innerHTML = data.list[i].puntata;   // Use innerHTML to set the text
+            ul.appendChild(li);
+      }
+      listDiv.appendChild(ul);    // Note here
+          }
   }
+
+function goToQuestionList(){
+  location.href = "./dashboard_trainee.html" //question list location
+}
 </script>
 
 <body>
@@ -71,9 +85,13 @@
         <h1 id="myData">Welkom terug Trainee!</h1>
       </div>
       <div class="card-body">
-        <p class="card-text">hoi</p>
-        <p class="card-text">hoi</p>
-        <p class="card-text">hoi</p>
+        <center>
+            <div style="margin:auto, mt-2">
+              <button type="submit" class="btn btn-default" style="margin-top:30px" onclick="goToQuestionList()">
+                Ga naar vragenlijst
+              </button>
+            </div>
+          </center>
       </div>
     </div>
     <div style="flex-grow: 4">
