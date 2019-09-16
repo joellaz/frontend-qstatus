@@ -6,6 +6,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "jquery": "^3.4.1",
+<<<<<<< HEAD
     "lit-element": "^2.2.1"
   },
   "devDependencies": {
@@ -14,6 +15,16 @@
   "scripts": {
     "start": "es-dev-server --open --watch --node-resolve --port 8081",
     "test": "echo \"Error: no test specified\" && exit 1"
+=======
+    "lit-element": "^2.2.1",
+    "yc-battery": "^0.1.2"
+  },
+  "devDependencies": {
+    "es-dev-server": "^1.10.4"
+  },
+  "scripts": {
+    "start": "es-dev-server --open --watch --node-resolve"
+>>>>>>> feat: connected batteries to mock data
   },
   "author": "",
   "license": "ISC"

@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <title>Dashboard</title>
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Vragenlijst</title>
+    <title>Dashboard</title>
     <!-- Bootstrap inladen. -->
     <link
       rel="stylesheet"
@@ -21,8 +19,17 @@
       rel="stylesheet"
     />
 
+    <!-- yc-qstatus -->
+    <script type="module" src="./components/yc-qstates/yc-qstates.js"></script>
+
     <!-- Navbar inladen -->
     <script type="module" src="./components/navbar/YCNavbar.js"></script>
+
+    <!-- FA -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
 
   <!-- JAVASCRIPT: GET vraag from database. -->
@@ -42,11 +49,8 @@
   </script>
 
   <body>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
     <yc-navbar></yc-navbar>
+    <yc-qstates></yc-qstates>
 
     <div align="center">
       <div class="flex-container">
