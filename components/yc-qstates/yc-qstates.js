@@ -1,5 +1,5 @@
-import { LitElement, html, css } from 'lit-element';
-import 'yc-battery/yc-battery.js';
+import { LitElement, html, css } from "lit-element";
+import "yc-battery/yc-battery.js";
 
 class YCQstates extends LitElement {
   static get properties() {
@@ -45,21 +45,21 @@ class YCQstates extends LitElement {
     this.dataObj = [
       [
         {
-          name: 'IQ',
+          name: "IQ",
           balance: this.qData.iq_state
         },
         {
-          name: 'EQ',
+          name: "EQ",
           balance: this.qData.eq_state
         }
       ],
       [
         {
-          name: 'FQ',
+          name: "FQ",
           balance: this.qData.fq_state
         },
         {
-          name: 'SQ',
+          name: "SQ",
           balance: this.qData.sq_state
         }
       ]
@@ -67,7 +67,7 @@ class YCQstates extends LitElement {
   }
 
   async fetchQStates() {
-    const response = await fetch('../../assets/mock-data/qstates.json');
+    const response = await fetch("../../assets/mock-data/qstates.json");
     await new Promise(resolve => {
       setTimeout(resolve, 2000);
     });
@@ -86,7 +86,7 @@ class YCQstates extends LitElement {
                 </div>
               `
             )
-          : 'Loading...'}
+          : "Loading..."}
       </div>
       <div class="row">
         ${this.dataObj
@@ -98,10 +98,10 @@ class YCQstates extends LitElement {
                 </div>
               `
             )
-          : 'Loading...'}
+          : "Loading..."}
       </div>
     `;
   }
 }
 
-customElements.define('yc-qstates', YCQstates);
+customElements.define("yc-qstates", YCQstates);
