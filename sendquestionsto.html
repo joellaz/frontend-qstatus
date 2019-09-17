@@ -24,6 +24,46 @@
 
     <!-- Navbar inladen -->
     <script type="module" src="./components/navbar/YCNavbar.js"></script>
+    <script>   // FELIX QUICKED
+        window.onload = function (){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+              if(this.readyState == 4){
+                maakTabelTrainee(this.responseText);
+              }
+
+            }
+            xhr.open("GET","http://localhost:8082/trainee/all",true);
+            xhr.send();
+            var xhr2 = new XMLHttpRequest();
+            xhr2.onreadystatechange = function(){
+              if(this.readyState == 4){
+                maakTabel(this.responseText);
+              }
+
+            }
+            xhr2.open("GET","http://localhost:8082/questionlist/all",true);
+            xhr2.send();
+        }
+        function maakTabelTrainee(deJSON){
+          var eindHTML = "<table>";
+          var alleQL = JSON.parse(deJSON);
+          for(var x = 0 ; x < alleQL.length ; x++){
+              eindHTML += "<tr><td class=QFO >"+alleQL[x].username+" <input type=checkbox></td></tr>";
+          }
+          eindHTML += "<table>";
+          document.getElementById("traineesDiv").innerHTML = eindHTML;
+        }
+        function maakTabel(deJSON){
+          var eindHTML = "<table>";
+          var alleQL = JSON.parse(deJSON);
+          for(var x = 0 ; x < alleQL.length ; x++){
+              eindHTML += "<tr><td class=QFO >"+alleQL[x].id+" <input type=checkbox></td></tr>";
+          }
+          eindHTML += "<table>";
+          document.getElementById("questionListDiv").innerHTML = eindHTML;
+        }
+    </script>
   </head>
 
   <body>
@@ -43,7 +83,19 @@
         </div>
       </div>
     </div>
+    <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <div id=traineesDiv></div>
+          </div>
+          <div class="col-sm">
+              <div id=questionListDiv></div>
+          </div>
+          <div class="col-sm">
 
+          </div>
+        </div>
+      </div>
     <a href="./dashboard_manager.html"
       ><button type="button" class="btn btn-default">
         Vragenlijsten versturen

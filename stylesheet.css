@@ -69,3 +69,10 @@ button {
 .rotated {
   transform: rotate(300grad);
 }
+.QFO{
+  background-color: #FF7129;
+}
+.QFE{
+  background-color: #515157;
+  color:white;
+}
