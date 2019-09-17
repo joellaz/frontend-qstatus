@@ -12,6 +12,15 @@ class AnswerElement extends LitElement {
   async connectedCallback() {
     super.connectedCallback();
     await this.getQuestionList();
+    let answer = document.getElementById('newAnswer');
+    answer.addEventListener('keypress', function(event) {
+      if (event.keyCode == 13) {
+        console.log('sdfdsf');
+        event.preventDefault();
+        //document.getElementById('submit-button').click();
+        //this.sendOpenAnswer('BOnjour');
+      }
+    });
   }
 
   async getQuestionList() {
@@ -79,23 +88,11 @@ class AnswerElement extends LitElement {
             id="submit-button"
             class=""
             style="margin-top:30px"
+            @click=""
           >
             Submit
           </button>
         </form>
-        <script>
-          (function() {
-            let answer = document.getElementById('newAnswer');
-            answer.addEventListener('keypress', function(event) {
-              if (event.keyCode == 13) {
-                console.log('sdfdsf');
-                event.preventDefault();
-                document.getElementById('submit-button').click();
-                this.sendOpenAnswer('BOnjour');
-              }
-            });
-          })();
-        </script>
       </div>
     `;
   }
@@ -106,7 +103,6 @@ class AnswerElement extends LitElement {
 }
 
 let questionList;
-
 function showQuestion(question) {}
 
 // Wat gebeurt hier?
