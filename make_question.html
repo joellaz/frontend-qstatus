@@ -1,153 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Stel een vraag.</title>
+  <title>Stel een vraag.</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Vragenlijst</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Vragenlijst</title>
 
-  <!-- Bootstrap inladen. -->
-  <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- Bootstrap inladen. -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
 
-  <!-- Eigen stylesheet inladen. -->
-  <link rel="stylesheet" type="text/css" href="./stylesheet.css" />
+    <!-- Eigen stylesheet inladen. -->
+    <link rel="stylesheet" type="text/css" href="./stylesheet.css" />
 
-  <!-- Lato font inladen. -->
-  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <!-- Lato font inladen. -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Navbar inladen -->
-  <script type="module" src="./components/navbar/YCNavbar.js"></script>
-</head>
+    <!-- Navbar inladen -->
+    <script type="module" src="./components/navbar/YCNavbar.js"></script>
+  </head>
 
-<body>
-  <yc-navbar></yc-navbar>
+  <body>
+    <yc-navbar></yc-navbar>
 
-  <!-- POST vraag naar database. -->
-  <script>
-    function sendQuestion() {
-      var deDom = document.getElementsByTagName("html");
-      console.log(deDom);
-      var mainContainer = document.getElementById("newQuestion");
-      console.log(mainContainer.value);
+    <!-- POST vraag naar database. -->
+    <script>
+      function sendQuestion() {
+        var deDom = document.getElementsByTagName("html");
+        console.log(deDom);
+        var mainContainer = document.getElementById("newQuestion");
+        console.log(mainContainer.value);
+        var IQContainer = document.getElementById("IQstate");
+        console.log(IQContainer.value);
+        var SQContainer = document.getElementById("SQstate");
+        console.log(SQContainer.value);
+        var FQContainer = document.getElementById("FQstate");
+        console.log(FQContainer.value);
+        var EQContainer = document.getElementById("EQstate");
+        console.log(EQContainer.value);
 
-      let sendableQuestion = {};
-      sendableQuestion.text = mainContainer.value;
+        let sendableQuestion = {};
+        sendableQuestion.text = mainContainer.value;
+        sendableQuestion.eqWeight = eqContainer.value;
+        sendableQuestion.sqWeight = sqContainer.value;
+        sendableQuestion.iqWeight = iqContainer.value;
+        sendableQuestion.fqWeight = fqContainer.value;
 
-      if (document.getElementById('openQ').checked) {
-        const request = fetch('http://localhost:8082/openquestion', {
-          method: 'POST',
-          body: JSON.stringify(sendableQuestion),
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        });
-      } else if (document.getElementById('closedQ').checked) {
+        if (document.getElementById("openQ").checked) {
+          const request = fetch("http://localhost:8082/openquestion", {
+            method: "POST",
+            body: JSON.stringify(sendableQuestion),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          });
+        } else if (document.getElementById("closedQ").checked) {
+          const request = fetch("http://localhost:8082/closedquestion", {
+            method: "POST",
+            body: JSON.stringify(sendableQuestion),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          });
+        }
 
-        const request = fetch('http://localhost:8082/closedquestion', {
-          method: 'POST',
-          body: JSON.stringify(sendableQuestion),
-          headers: {
-            'Content-Type': 'application/json',
+        location.href = "./make_question.html";
+
+        request.then(response => {
+          if (response.status === 201) {
+            response
+              .json()
+              .then(result =>
+                console.log("Question succesfully added: " + result)
+              );
           }
         });
       }
+    </script>
 
-      location.href = "./make_question.html";
+    <div align="center">
+      <form>
+        <h1 style="margin-top:50px">Stel een nieuwe vraag</h1>
+        <p>
+          Schrijf hier een nieuwe vraag voor je trainee. <br />
+          Hierbij kan je kiezen tussen een vraag met een open antwoord of een
+          vraag met een antwoord in een range van 0 tot 5 (Gesloten Vraag).<br />
+          Daarnaast kan je ook invullen in hoeverre de betreffende vraag een
+          invloed uit kan oefenen op een *q.
+        </p>
+        <input type="text" id="newQuestion" style="width:70%;" />
+        <div class="card-body" style="margin-top:40px">
+          <ul class="list-group" style="width:20%;">
+            <button
+              type="button"
+              class="list-group-item list-group-item-action"
+            >
+              <div class="form-check" align="left">
+                <input type="radio" id="openQ" />
+                <label class="form-check-label" for="exampleRadios1">
+                  &nbsp; Open Vraag.
+                </label>
+              </div>
+            </button>
+            <button
+              type="button"
+              class="list-group-item list-group-item-action"
+            >
+              <div class="form-check" align="left">
+                <input type="radio" id="closedQ" />
+                <label class="form-check-label" for="exampleRadios1">
+                  &nbsp; Gesloten Vraag.
+                </label>
+              </div>
+            </button>
+          </ul>
+        </div>
+        IQ:
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          id="IQstate"
+          value="0.5"
+        />
+        <br />
+        FQ:
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          id="FQstate"
+          value="0.5"
+        />
+        <br />
+        SQ:
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          id="SQstate"
+          value="0.5"
+        />
+        <br />
+        EQ:
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          id="EQstate"
+          value="0.5"
+        />
+        <br />
+        <br />
+        <br />
+        <br />
 
-      request.then(response => {
-        if (response.status === 201) {
-          response.json().then(result => console.log("Question succesfully added: " + result));
-        }
-      });
+        <button type="button" class="btn btn-default" onclick="sendQuestion()">
+          Indienen
+        </button>
+      </form>
+    </div>
 
-
-    }
-
-    function sendQuestionAndClose() {
-      var deDom = document.getElementsByTagName("html");
-      console.log(deDom);
-      var mainContainer = document.getElementById("newQuestion");
-      console.log(mainContainer.value);
-
-      let sendableQuestion = {};
-      sendableQuestion.text = mainContainer.value;
-
-      if (document.getElementById('openQ').checked) {
-        const request = fetch('http://localhost:8082/openquestion', {
-          method: 'POST',
-          body: JSON.stringify(sendableQuestion),
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        });
-      } else if (document.getElementById('closedQ').checked) {
-
-        const request = fetch('http://localhost:8082/closedquestion', {
-          method: 'POST',
-          body: JSON.stringify(sendableQuestion),
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        });
-      }
-
-      location.href = "./dashboard_manager.html";
-
-      request.then(response => {
-        if (response.status === 201) {
-          response.json().then(result => console.log("Question succesfully added: " + result));
-        }
-      });
-
-
-    }
-  </script>
-
-  <div align="center">
-    <form>
-      <h1 style="margin-top:50px">Stel een nieuwe vraag</h1>
-      <p>Typ hier een nieuwe vraag voor je trainee.
-        Geef aan of je hier een open antwoord wil, of een gesloten antwoord (eens/oneens).
-      </p>
-      <input type="text" id="newQuestion" style="font-size:12pt;width:70%;" />
-      <div class="card-body" style="margin-top:40px">
-        <ul class="list-group" style="width:20%;">
-          <button type="button" id="0" class="list-group-item list-group-item-action">
-            <div class="form-check" align="left">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="openQ" value="option1">
-              <label class="form-check-label" for="exampleRadios1">
-                &nbsp; Open antwoord.
-              </label>
-            </div>
-          </button>
-          <button type="button" id="0" class="list-group-item list-group-item-action">
-            <div class="form-check" align="left">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="closedQ" value="option1">
-              <label class="form-check-label" for="exampleRadios1">
-                &nbsp; Gesloten antwoord.
-              </label>
-            </div>
-          </button>
-        </ul>
-      </div>
-
-      </br></br>
-      <button type="button" class="btn btn-default" onclick="sendQuestion()">
-        Vraag aanmaken
-      </button>
-      <button type="button" class="btn btn-default" onclick="sendQuestionAndClose()">
-        Vraag aanmaken en afsluiten
-      </button>
-
-    </form>
-
-  </div>
-
-  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
