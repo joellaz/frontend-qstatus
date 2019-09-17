@@ -29,7 +29,7 @@ class YCNavbar extends LitElement {
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="javascript:"
+              <a class="nav-link" href="javascript:choosePage()"
                 >Home <span class="sr-only">(current)</span></a
               >
             </li>
@@ -48,6 +48,14 @@ class YCNavbar extends LitElement {
 
   createRenderRoot() {
     return this;
+  }
+
+  choosePage() {
+    user = JSON.parse(localStorage.getItem("choosenUser"));
+    if (user.hasOwnProperty("team_id")) {
+      return "./dashboard_trainee.html";
+    }
+    return "./dashboard_manager.html";
   }
 }
 
