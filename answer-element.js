@@ -61,9 +61,18 @@ class AnswerElement extends LitElement {
                   style="font-size:12px; height:200px; width:50%;"
                 />
               `
-            : html`
-                <!-- Template for closed questions with radios -->
-              `}
+            : [, ,].map(
+                /* Create array with amount of items equalling the amount of options of the question */
+                i => html`
+                  <!-- Template for closed questions with radios -->
+                  <label for="closed-question-${i}">${i}</label>
+                  <input
+                    type="radio"
+                    name="closed-question"
+                    id="closed-question-${i}"
+                  />
+                `
+              )}
           <button
             type="button"
             class=""
