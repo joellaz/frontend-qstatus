@@ -17,8 +17,8 @@ class AnswerElement extends LitElement {
       if (event.keyCode == 13) {
         console.log('sdfdsf');
         event.preventDefault();
-        //document.getElementById('submit-button').click();
-        //this.sendOpenAnswer('BOnjour');
+        document.getElementById('submit-button').click();
+        document.getElementById('newAnswer').value = '';
       }
     });
   }
@@ -88,7 +88,7 @@ class AnswerElement extends LitElement {
             id="submit-button"
             class=""
             style="margin-top:30px"
-            @click=""
+            @click=${e => this.sendOpenAnswer(e)}
           >
             Submit
           </button>
