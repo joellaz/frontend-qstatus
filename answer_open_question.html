@@ -45,9 +45,8 @@
             test = result;
             var questionList = test.questionList;
             console.log(test.questionList);
-
+            var questionCounter = 0;
             var mainContainer = document.getElementById("myData");
-            questionCounter = 0;
             questionId = questionList[questionCounter].id;
             questionText = questionList[questionCounter].text;
             mainContainer.innerHTML = questionList[questionCounter].text;
@@ -80,6 +79,9 @@
           'Content-Type': 'application/json',
         }
       });
+
+      location.href = './answer_open_question.html';
+
     }
   </script>
 
@@ -98,7 +100,6 @@
   </div>
   <script src="./node_modules/jquery/dist/jquery.min.js"></script>
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>
