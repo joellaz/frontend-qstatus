@@ -16,6 +16,8 @@ Optionally: install VSCode extensions
 
 ```sh
 npm install
+npm install yc-battery
+
 ```
 
 "EditorConfig for VS Code"
@@ -28,11 +30,13 @@ open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args
 
 ### Chrome browser without cors filter (Windows)
 
+```sh
 - Right click on desktop, add new shortcut
 - Add the target as "[PATH_TO_CHROME]\chrome.exe" --disable-web-security --disable-gpu --user-data-dir=~/chromeTemp
 - Click OK.
 
 On Windows 10 command will be: "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --disable-web-security --disable-gpu --user-data-dir=~/chromeTemp
+```
 
 ### Running the application
 
