@@ -1,20 +1,28 @@
 {
   "name": "javascript",
   "version": "1.0.0",
-  "description": "",
+  "description": "https://gist.github.com/joellaz/7b8d6771e6bdcb960f38b61d7de67469",
   "main": "index.js",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "jquery": "^3.4.1",
-    "lit-element": "^2.2.1",
-    "yc-battery": "^0.1.2"
+    "lit-element": "^2.2.1"
   },
   "devDependencies": {
     "es-dev-server": "^1.10.4"
   },
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "es-dev-server --open --watch --node-resolve"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joellaz/frontend-qstatus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joellaz/frontend-qstatus/issues"
+  },
+  "homepage": "https://github.com/joellaz/frontend-qstatus#readme"
 }
