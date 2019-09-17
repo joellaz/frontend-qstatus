@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Open vraag</title>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Vragenlijst</title>
+
+  <!-- Bootstrap inladen. -->
+  <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+  <!-- Eigen stylesheet inladen. -->
+  <link rel="stylesheet" type="text/css" href="./stylesheet.css" />
+
+  <!-- Lato font inladen. -->
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom border-secondary">
+    <a class="navbar-brand" href="#">
+      <img src="./assets/images/logoyc.svg" width="90" class="d-inline-block align-top" alt="" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li><a class="nav-link" href="./index.html">Login<span class="sr-only">(current)</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- JAVASCRIPT: GET vraag from database.
+  <script>
+    // Fetching the question with id 8.
+    const request = fetch('http://localhost:8082/openquestion/');
+    request.then(response => {
+      if (response.status === 200) {
+        response.json().then(result => {
+          jsonData = result.text;
+          console.log(jsonData);
+
+          // Store acquired data in the right element (myData), so that it can be displayed.
+          var mainContainer = document.getElementById("myData");
+          mainContainer.innerHTML = jsonData;
+        });
+      }
+    });
+
+    function sendOpenAnswer() {
+      var mainContainer = document.getElementById("newAnswer");
+      console.log(mainContainer.value);
+
+      let sendableAnswer = {};
+      sendableAnswer.title = "openquestion";
+
+      sendableAnswer.text = mainContainer.value;
+
+      const request = fetch('http://localhost:8082/openanswer', {
+        method: 'POST',
+        body: JSON.stringify(sendableAnswer),
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+    }
+
+    // Wat gebeurt hier?
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          var vraag = this.responseText;
+          var string = JSON.parse(vraag)
+          // welke variable meot hij hieraanroepeN?
+          document.getElementById("myData").innerHTML = string.text;
+        }
+      };
+
+      // welke variabelen
+      var identify = //id ergens vandaag???
+        xhttp.open("GET", "http://localhost:8082/openquestion/{" + identify + "}", true);
+      xhttp.send();
+    }
+  </script> -->
+
+  <script type="module" src="answer-element.js"></script>
+  <answer-element></answer-element>
+  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
