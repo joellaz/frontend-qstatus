@@ -15,7 +15,6 @@ class AnswerElement extends LitElement {
     let answer = document.getElementById('newAnswer');
     answer.addEventListener('keypress', function(event) {
       if (event.keyCode == 13) {
-        console.log('sdfdsf');
         event.preventDefault();
         document.getElementById('submit-button').click();
         document.getElementById('newAnswer').value = '';
@@ -56,6 +55,7 @@ class AnswerElement extends LitElement {
     for (radio of options) {
       if (radio.checked) {
         value = radio.value;
+        radio.checked = false;
         break;
       }
     }
@@ -92,20 +92,33 @@ class AnswerElement extends LitElement {
   }
 
   render() {
+    const niveaus = [
+      'Helemaal mee oneens\t',
+      'Enigszins mee oneens\t',
+      'Neutraal\t',
+      'Enigszins mee eens\t',
+      'Helemaal mee eens\t'
+    ];
     return html`
       <div style="width: 600px; margin: 0 auto;">
         <form>
-          <h2 style="margin-top:50px">Vraag</h2>
-          <h3>
+          ${this.questionList[this.questionIterator].questionType === 'OPEN'
+            ? html`
+                <h2 style="margin-top:50px">Vraag</h2>
+              `
+            : html`
+                <h2 style="margin-top:50px">Stelling</h2>
+              `}
+          <h1>
             ${this.questionList
               ? this.questionList[this.questionIterator].text
               : 'Loading...'}
-          </h3>
+          </h1>
           <!--  <button type="button" onclick="loadDoc()">Laat de vraag zien en <br>typ je antwoord hieronder.</button>  -->
-          <p>Typ je antwoord in het antwoordveld.</p>
 
           ${this.questionList[this.questionIterator].questionType === 'OPEN'
             ? html`
+                <p>Typ je antwoord in het antwoordveld.</p>
                 <input
                   type="text"
                   name="newAnswer"
@@ -120,25 +133,33 @@ class AnswerElement extends LitElement {
               ].map(
                 /* Create array with amount of items equalling the amount of options of the question */
                 i => html`
-                  <!-- Template for closed questions with radios -->
-                  <label for="closed-question-${i}">${i}</label>
-                  <input
-                    type="radio"
-                    name="closed-question"
-                    value=${i}
-                    id="closed-question-${i}"
-                  />
+                  <tr>
+                    <!-- Template for closed questions with radios -->
+                    <td>
+                      <label for="closed-question-${i}">${niveaus[i]}</label>
+                    </td>
+                    <td>
+                      <input
+                        type="radio"
+                        name="closed-question"
+                        value=${i}
+                        id="closed-question-${i}"
+                      />
+                    </td>
+                  </tr>
                 `
               )}
-          <button
-            type="button"
-            id="submit-button"
-            class=""
-            style="margin-top:30px"
-            @click=${e => this.sendAnswer(e)}
-          >
-            Submit
-          </button>
+          <td>
+            <button
+              type="button"
+              id="submit-button"
+              class=""
+              style="margin-top:30px"
+              @click=${e => this.sendAnswer(e)}
+            >
+              Submit
+            </button>
+          </td>
         </form>
       </div>
     `;
