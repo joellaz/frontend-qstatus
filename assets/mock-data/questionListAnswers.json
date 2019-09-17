@@ -1,0 +1,10 @@
+[
+  { "id": 1, "text": "Do you feel fit?", "anwer": 3 },
+  { "id": 2, "text": "Did you go to a party recently?", "anwer": 5 },
+  {
+    "id": 3,
+    "text": "What was your most recent coding challenge?",
+    "anwer": 2
+  },
+  { "id": 4, "text": "Where do you see yourself in 5 years?", "anwer": 1 }
+]
