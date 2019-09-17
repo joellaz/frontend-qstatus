@@ -12,6 +12,11 @@ class YCQstates extends LitElement {
           }
           return false;
         }
+      },
+      userId: {
+        type: Number,
+        reflect: true,
+        attribute: "userid"
       }
     };
   }
@@ -40,6 +45,8 @@ class YCQstates extends LitElement {
   async connectedCallback() {
     super.connectedCallback();
     await this.fetchQStates();
+
+    console.log(this.userId);
 
     // Create an obj from database result that is easier to work with in template :)
     this.dataObj = [
