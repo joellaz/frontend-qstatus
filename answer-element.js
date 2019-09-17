@@ -42,7 +42,7 @@ class AnswerElement extends LitElement {
 
   render() {
     return html`
-      <div style="margin: 0 auto;">
+      <div style="width: 600px; margin: 0 auto;">
         <form>
           <h2 style="margin-top:50px">Vraag</h2>
           <h3>
@@ -56,21 +56,14 @@ class AnswerElement extends LitElement {
           ${this.questionList[this.questionId].questionType === 'OPEN'
             ? html`
                 <input
-                  @keypress=${e => {
-                    if (e.key === 'Enter') {
-                      this.sendOpenAnswer(e);
-                      console.log('pressed enter on input');
-                    }
-                  }}
                   type="text"
                   name="newAnswer"
-                  style="font-size:12pt;height:200px;width:50%;"
+                  style="font-size:12px; height:200px; width:50%;"
                 />
               `
             : html`
                 <!-- Template for closed questions with radios -->
               `}
-
           <button
             type="button"
             class=""
