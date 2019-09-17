@@ -1,109 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
 
-    <!-- Bootstrap inladen. -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
 
-    <!-- Eigen stylesheet inladen. -->
-    <link rel="stylesheet" type="text/css" href="./stylesheet.css" />
+  <!-- Bootstrap inladen. -->
+  <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
 
-    <!-- Font inladen. -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Lato&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Eigen stylesheet inladen. -->
+  <link rel="stylesheet" type="text/css" href="./stylesheet.css" />
 
-    <!-- Navbar inladen -->
-    <script type="module" src="./components/navbar/YCNavbar.js"></script>
-    <script>   // FELIX QUICKED
-        window.onload = function (){
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function(){
-              if(this.readyState == 4){
-                maakTabelTrainee(this.responseText);
-              }
+  <!-- Font inladen. -->
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet" />
 
+  <!-- Navbar inladen -->
+  <script type="module" src="./components/navbar/YCNavbar.js"></script>
+</head>
+
+<body onload="receiveUsers(), receiveQuestionLists()">
+  <yc-navbar></yc-navbar>
+
+  <script>
+
+    var choosenUser;
+    var allUsers;
+    var ChoosenQuestionlist;
+    var allQuestionLists;
+
+    function receiveUsers() {
+      console.log("hoy");
+      // Fetching all users in database.
+      const request = fetch('http://localhost:8082/trainee/all');
+      request.then(response => {
+        if (response.status === 200) {
+          response.json().then(result => {
+            allUsers = result;
+            console.log(allUsers);
+            for (var i = 0; i < result.length; i++) {
+              // Store acquired data in the right element, so that it can be displayed.
+              var mainContainer = document.getElementById(i);
+              mainContainer.innerHTML = result[i].username;
             }
-            xhr.open("GET","http://localhost:8082/trainee/all",true);
-            xhr.send();
-            var xhr2 = new XMLHttpRequest();
-            xhr2.onreadystatechange = function(){
-              if(this.readyState == 4){
-                maakTabel(this.responseText);
-              }
+          });
+        }
+      });
+    }
 
+    function receiveQuestionLists() {
+
+      // Fetching all question lists in database.
+      const request = fetch('http://localhost:8082/questionlist/all');
+      request.then(response => {
+        if (response.status === 200) {
+          response.json().then(result => {
+            allQuestionLists = result;
+            console.log(result.length);
+            for (var i = 0; i < result.length; i++) {
+              // Store acquired data in the right element, so that it can be displayed.
+              var mainContainer = document.getElementById("questionlist" + i);
+              mainContainer.innerHTML = "Vragenlijst " + allQuestionLists[i].id;
             }
-            xhr2.open("GET","http://localhost:8082/questionlist/all",true);
-            xhr2.send();
+          });
         }
-        function maakTabelTrainee(deJSON){
-          var eindHTML = "<table>";
-          var alleQL = JSON.parse(deJSON);
-          for(var x = 0 ; x < alleQL.length ; x++){
-              eindHTML += "<tr><td class=QFO >"+alleQL[x].username+" <input type=checkbox></td></tr>";
-          }
-          eindHTML += "<table>";
-          document.getElementById("traineesDiv").innerHTML = eindHTML;
-        }
-        function maakTabel(deJSON){
-          var eindHTML = "<table>";
-          var alleQL = JSON.parse(deJSON);
-          for(var x = 0 ; x < alleQL.length ; x++){
-              eindHTML += "<tr><td class=QFO >"+alleQL[x].id+" <input type=checkbox></td></tr>";
-          }
-          eindHTML += "<table>";
-          document.getElementById("questionListDiv").innerHTML = eindHTML;
-        }
-    </script>
-  </head>
+      });
+    }
 
-  <body>
-    <yc-navbar></yc-navbar>
+    function setChoosenUser(clickedId) {
+      choosenUser = allUsers[clickedId];
+    }
 
-    <!-- Trainees en vragenlijsten grids. -->
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <h1>Trainees</h1>
-        </div>
-        <div class="col-sm">
-          <h1>Vragenlijsten</h1>
-        </div>
-        <div class="col-sm">
-          <h1>Send</h1>
-        </div>
+    function setChoosenQuestionlist(clickedId) {
+      choosenQuestionlist = allQuestionLists[clickedId];
+    }
+
+    function sendData() {
+      localStorage.setItem(
+        'sendUser',
+        JSON.stringify(choosenUser)
+      );
+      localStorage.setItem(
+        'sendQuestionList',
+        JSON.stringify(choosenQuestionlist)
+      );
+      // TODO: Hier een "succes!" pagina voor maken.
+      location.href = './dashboard_manager.html';
+
+    }
+
+
+  </script>
+
+  <!-- Trainees en vragenlijsten grids. -->
+  <div class="container" style="margin-top:30px">
+    <div class="row">
+      <div class="col-sm">
+        <h1>Trainees</h1>
+        <p>Kies hier de trainees waar je naar wil sturen.</p>
+        <ul class="list-group">
+          <button type="button" id="0" class="list-group-item list-group-item-action"
+            onclick="setChoosenUser(this.id)"></button>
+          <button type="button" id="1" class="list-group-item list-group-item-action"
+            onclick="setChoosenUser(this.id)"></button>
+          <button type="button" id="2" class="list-group-item list-group-item-action"
+            onclick="setChoosenUser(this.id)"></button>
+          <button type="button" id="3" class="list-group-item list-group-item-action"
+            onclick="setChoosenUser(this.id)"></button>
+        </ul>
+      </div>
+      <div class="col-sm">
+        <h1>Vragenlijsten</h1>
+        <p>Kies hier de vragenlijsten die je wil versturen.</p>
+        <ul class="list-group">
+          <button type="button" id="questionlist0" class="list-group-item list-group-item-action"
+            onclick="setChoosenQuestionlist(this.id)"></button>
+          <button type="button" id="questionlist1" class="list-group-item list-group-item-action"
+            onclick="setChoosenQuestionlist(this.id)"></button>
+          <button type="button" id="questionlist2" class="list-group-item list-group-item-action"
+            onclick="setChoosenQuestionlist(this.id)"></button>
+          <button type="button" id="questionlist3" class="list-group-item list-group-item-action"
+            onclick="setChoosenQuestionlist(this.id)"></button>
+          <button type="button" id="questionlist4" class="list-group-item list-group-item-action"
+            onclick="setChoosenQuestionlist(this.id)"></button>
+        </ul>
+      </div>
+      <div class="col-sm">
+        <h1></h1>
+        <a href="./dashboard_manager.html"><button type="button" class="btn btn-default" style="margin-top:90px"
+            onclick="">
+            Vragenlijsten versturen
+          </button></a>
       </div>
     </div>
-    <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            <div id=traineesDiv></div>
-          </div>
-          <div class="col-sm">
-              <div id=questionListDiv></div>
-          </div>
-          <div class="col-sm">
+  </div>
 
-          </div>
-        </div>
-      </div>
-    <a href="./dashboard_manager.html"
-      ><button type="button" class="btn btn-default">
-        Vragenlijsten versturen
-      </button></a
-    >
 
-    <!-- Dit laadt je aan de onderkant van de body, want het heeft interactie met je html (DOM). -->
-    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+
+  <!-- Dit laadt je aan de onderkant van de body, want het heeft interactie met je html (DOM). -->
+  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>
