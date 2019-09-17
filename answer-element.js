@@ -58,6 +58,7 @@ class AnswerElement extends LitElement {
                 <input
                   type="text"
                   name="newAnswer"
+                  id="newAnswer"
                   style="font-size:12px; height:200px; width:50%;"
                 />
               `
@@ -66,13 +67,26 @@ class AnswerElement extends LitElement {
               `}
           <button
             type="button"
+            id="submit-button"
             class=""
             style="margin-top:30px"
-            @click=${e => this.sendOpenAnswer(e)}
           >
             Submit
           </button>
         </form>
+        <script>
+          (function() {
+            let answer = document.getElementById('newAnswer');
+            answer.addEventListener('keypress', function(event) {
+              if (event.keyCode == 13) {
+                console.log('sdfdsf');
+                event.preventDefault();
+                document.getElementById('submit-button').click();
+                this.sendOpenAnswer('BOnjour');
+              }
+            });
+          })();
+        </script>
       </div>
     `;
   }
