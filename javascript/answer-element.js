@@ -13,7 +13,7 @@ class AnswerElement extends LitElement {
     super.connectedCallback();
     await this.getQuestionList();
     let answer = document.getElementById('newAnswer');
-    answer.addEventListener('keypress', function(event) {
+    answer.addEventListener('keypress', function (event) {
       if (event.keyCode == 13) {
         event.preventDefault();
         document.getElementById('submit-button').click();
@@ -23,7 +23,7 @@ class AnswerElement extends LitElement {
   }
 
   async getQuestionList() {
-    const response = await fetch('http://localhost:8082/questionlist/1');
+    const response = await fetch('http://localhost:8082/questionlist/9');
     if (response.status === 200) {
       const dataJson = await response.json();
       this.questionList = dataJson.questionList;
@@ -47,6 +47,8 @@ class AnswerElement extends LitElement {
       : this.sendClosedAnswer(sendableAnswer, e);
     this.questionIterator++;
     if (this.questionIterator == this.amountQuestions) {
+      localStorage.setItem('questionListFilledIn', 'true');
+      console.log
       window.location = './dashboard_trainee.html';
     }
   }
@@ -97,25 +99,25 @@ class AnswerElement extends LitElement {
       'Helemaal mee eens\t'
     ];
     return html`
-      <div style="width: 600px; margin: 0 auto;">
+      <div style="width: 600px; margin: 0 auto;" align="center">
         <form>
           <div>
             ${this.questionList[this.questionIterator].questionType === 'OPEN'
-              ? html`
+        ? html`
                   <h2 style="margin-top:50px">Vraag</h2>
                 `
-              : html`
+        : html`
                   <h2 style="margin-top:50px">Stelling</h2>
                 `}
             <h1>
               ${this.questionList
-                ? this.questionList[this.questionIterator].text
-                : 'Loading...'}
+        ? this.questionList[this.questionIterator].text
+        : 'Loading...'}
             </h1>
             <!--  <button type="button" onclick="loadDoc()">Laat de vraag zien en <br>typ je antwoord hieronder.</button>  -->
 
             ${this.questionList[this.questionIterator].questionType === 'OPEN'
-              ? html`
+        ? html`
                   <p>Typ je antwoord in het antwoordveld.</p>
                   <input
                     type="text"
@@ -124,13 +126,13 @@ class AnswerElement extends LitElement {
                     style="font-size:12px; height:200px; width:50%;"
                   />
                 `
-              : [
-                  ...Array(
-                    this.questionList[this.questionIterator].rangeMax + 1
-                  ).keys()
-                ].map(
-                  /* Create array with amount of items equalling the amount of options of the question */
-                  i => html`
+        : [
+          ...Array(
+            this.questionList[this.questionIterator].rangeMax + 1
+          ).keys()
+        ].map(
+          /* Create array with amount of items equalling the amount of options of the question */
+          i => html`
                     <div class="row">
                       <div class="col-lg-4">
                         <label for="closed-question-${i}">${niveaus[i]}</label>
@@ -145,7 +147,7 @@ class AnswerElement extends LitElement {
                       </div>
                     </div>
                   `
-                )}
+        )}
             <div class="row">
               <div class="col-lg-4">
                 <button
@@ -156,10 +158,10 @@ class AnswerElement extends LitElement {
                   @click=${e => this.sendAnswer(e)}
                 >
                   ${this.questionIterator + 1 == this.amountQuestions
-                    ? html`
+        ? html`
                         Submit
                       `
-                    : html`
+        : html`
                         Next
                       `}
                 </button>
@@ -177,12 +179,12 @@ class AnswerElement extends LitElement {
 }
 
 let questionList;
-function showQuestion(question) {}
+function showQuestion(question) { }
 
 // Wat gebeurt hier?
 function loadDoc() {
   var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
+  xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var vraag = this.responseText;
       var string = JSON.parse(vraag);

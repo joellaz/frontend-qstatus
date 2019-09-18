@@ -47,28 +47,56 @@ class YCQstates extends LitElement {
     await this.fetchQStates();
 
     // Create an obj from database result that is easier to work with in template :)
-    this.dataObj = [
-      [
-        {
-          name: 'IQ',
-          balance: this.qData.iq_state
-        },
-        {
-          name: 'EQ',
-          balance: this.qData.eq_state
-        }
-      ],
-      [
-        {
-          name: 'FQ',
-          balance: this.qData.fq_state
-        },
-        {
-          name: 'SQ',
-          balance: this.qData.sq_state
-        }
-      ]
-    ];
+    console.log(localStorage.getItem('questionListFilledIn'))
+    if (localStorage.getItem('questionListFilledIn') === 'true') {
+      this.dataObj = [
+        [
+          {
+            name: 'IQ',
+            balance: 0.75
+          },
+          {
+            name: 'EQ',
+            balance: 0.5
+          }
+        ],
+        [
+          {
+            name: 'FQ',
+            balance: 0.2
+          },
+          {
+            name: 'SQ',
+            balance: 0.5
+          }
+        ]
+      ];
+    } else {
+      this.dataObj = [
+        [
+          {
+            name: 'IQ',
+            balance: this.qData.iq_state
+          },
+          {
+            name: 'EQ',
+            balance: this.qData.eq_state
+          }
+        ],
+        [
+          {
+            name: 'FQ',
+            balance: this.qData.fq_state
+          },
+          {
+            name: 'SQ',
+            balance: this.qData.sq_state
+          }
+        ]
+      ];
+
+    }
+
   }
 
   async fetchQStates() {
@@ -86,27 +114,27 @@ class YCQstates extends LitElement {
     return html`
       <div class="row">
         ${this.dataObj
-          ? this.dataObj[0].map(
-              obj => html`
+        ? this.dataObj[0].map(
+          obj => html`
                 <div class="col">
                   <p class="q-title">${obj.name}</p>
                   <yc-battery .fillAmount=${obj.balance * 100}></yc-battery>
                 </div>
               `
-            )
-          : 'Loading...'}
+        )
+        : 'Loading...'}
       </div>
       <div class="row">
         ${this.dataObj
-          ? this.dataObj[1].map(
-              obj => html`
+        ? this.dataObj[1].map(
+          obj => html`
                 <div class="col">
                   <p class="q-title">${obj.name}</p>
                   <yc-battery .fillAmount=${obj.balance * 100}></yc-battery>
                 </div>
               `
-            )
-          : ''}
+        )
+        : ''}
       </div>
     `;
   }
