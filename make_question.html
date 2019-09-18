@@ -26,6 +26,16 @@
 
     <!-- Navbar inladen -->
     <script type="module" src="./components/navbar/YCNavbar.js"></script>
+
+    <script>
+      const toggleQuestionType = type => {
+        const openQ = document.getElementById('openQ');
+        const closedQ = document.getElementById('closedQ');
+
+        type === 'open' ? (openQ.checked = true) : (openQ.checked = false);
+        type === 'open' ? (closedQ.checked = false) : (closedQ.checked = true);
+      };
+    </script>
   </head>
 
   <body>
@@ -50,9 +60,10 @@
             <button
               type="button"
               class="list-group-item list-group-item-action"
+              onclick="toggleQuestionType('open')"
             >
               <div class="form-check" align="left">
-                <input type="radio" id="openQ" />
+                <input type="radio" id="openQ" name="question-type" />
                 <label class="form-check-label" for="exampleRadios1">
                   &nbsp; Open Vraag.
                 </label>
@@ -61,9 +72,10 @@
             <button
               type="button"
               class="list-group-item list-group-item-action"
+              onclick="toggleQuestionType('closed')"
             >
               <div class="form-check" align="left">
-                <input type="radio" id="closedQ" />
+                <input type="radio" id="closedQ" name="question-type" />
                 <label class="form-check-label" for="exampleRadios1">
                   &nbsp; Gesloten Vraag.
                 </label>
