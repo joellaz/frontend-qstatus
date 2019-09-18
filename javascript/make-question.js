@@ -14,10 +14,10 @@ function sendQuestion() {
 
   let sendableQuestion = {};
   sendableQuestion.text = mainContainer.value;
-  sendableQuestion.eqWeight = eqContainer.value;
-  sendableQuestion.sqWeight = sqContainer.value;
-  sendableQuestion.iqWeight = iqContainer.value;
-  sendableQuestion.fqWeight = fqContainer.value;
+  sendableQuestion.eqWeight = EQContainer.value;
+  sendableQuestion.sqWeight = SQContainer.value;
+  sendableQuestion.iqWeight = IQContainer.value;
+  sendableQuestion.fqWeight = FQContainer.value;
 
   if (document.getElementById('openQ').checked) {
     const request = fetch('http://localhost:8082/openquestion', {
