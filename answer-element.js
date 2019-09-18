@@ -47,6 +47,8 @@ class AnswerElement extends LitElement {
       : this.sendClosedAnswer(sendableAnswer, e);
     this.questionIterator++;
     if (this.questionIterator == this.amountQuestions) {
+      localStorage.setItem('questionListFilledIn', 'true');
+      console.log
       window.location = './dashboard_trainee.html';
     }
   }

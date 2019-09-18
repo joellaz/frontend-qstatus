@@ -28,6 +28,7 @@
     var allUsers;
 
     function receiveUsers() {
+      localStorage.setItem('questionListFilledIn', 'false');
       // Fetching all users in database.
       const request = fetch('http://localhost:8082/user/all');
       request.then(response => {
