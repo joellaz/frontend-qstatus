@@ -22,23 +22,8 @@
     />
     <!-- Navbar inladen -->
     <script type="module" src="./components/navbar/YCNavbar.js"></script>
+    <script src="./javascript/dashboard-manager.js"></script>
   </head>
-
-  <!-- JAVASCRIPT: GET vraag from database. -->
-  <script>
-    window.onload = function() {
-      user = JSON.parse(localStorage.getItem('choosenUser'));
-      console.log(user);
-      // Store acquired data in the right element (myData), so that it can be displayed.
-
-      if (user !== null) {
-        var mainContainer = document.getElementById('myData');
-        mainContainer.innerHTML = 'Welkom terug ' + user.username + '!';
-        console.log(mainContainer);
-        console.log(user);
-      }
-    };
-  </script>
 
   <body>
     <link
@@ -53,33 +38,57 @@
           <div class="card-header bg-transparent border-0">
             <h1 id="myData">Welkom terug Talent Manager!</h1>
           </div>
-          <div class="card-body">
-            <p class="card-text">hoi</p>
-            <p class="card-text">hoi</p>
-            <p class="card-text">hoi</p>
-          </div>
         </div>
         <div style="flex-grow: 4"></div>
       </div>
       <div class="card-body">
-        <p><a href="./make_question.html"><button type="submit" class="btn btn-default" style="margin-top:30px">
-            Maak vraag
-          </button></a></p>
-          <p><a href="./make_questionlist.html"><button type="submit" class="btn btn-default" style="margin-top:30px">
+        <p>
+          <a href="./make_question.html"
+            ><button
+              type="submit"
+              class="btn btn-default"
+              style="margin-top:30px"
+            >
+              Maak vraag
+            </button></a
+          >
+        </p>
+        <p>
+          <a href="./make_questionlist.html"
+            ><button
+              type="submit"
+              class="btn btn-default"
+              style="margin-top:30px"
+            >
               Maak vragenlijst
-            </button></a></p>
-          <p><a href="./sendquestionsto.html"><button type="submit" class="btn btn-default" style="margin-top:30px">
-                Vragenlijst klaarzetten
-              </button></a></p>
-          <p><a href="./viewanswerlists.html"><button type="submit" class="btn btn-default" style="margin-top:30px">
+            </button></a
+          >
+        </p>
+        <p>
+          <a href="./sendquestionsto.html"
+            ><button
+              type="submit"
+              class="btn btn-default"
+              style="margin-top:30px"
+            >
+              Vragenlijst klaarzetten
+            </button></a
+          >
+        </p>
+        <p>
+          <a href="./viewanswerlists.html"
+            ><button
+              type="submit"
+              class="btn btn-default"
+              style="margin-top:30px"
+            >
               Antwoorden bekijken
-            </button></a></p>
+            </button></a
+          >
+        </p>
       </div>
     </div>
-    <div style="flex-grow: 4">
-
-
-    </div>
+    <div style="flex-grow: 4"></div>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   </body>
