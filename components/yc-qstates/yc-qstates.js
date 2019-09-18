@@ -12,6 +12,11 @@ class YCQstates extends LitElement {
           }
           return false;
         }
+      },
+      userId: {
+        type: Number,
+        reflect: true,
+        attribute: "userid"
       }
     };
   }
@@ -41,6 +46,8 @@ class YCQstates extends LitElement {
     super.connectedCallback();
     await this.fetchQStates();
 
+    console.log(this.userId);
+
     // Create an obj from database result that is easier to work with in template :)
     this.dataObj = [
       [
@@ -67,7 +74,9 @@ class YCQstates extends LitElement {
   }
 
   async fetchQStates() {
-    const response = await fetch("../../assets/mock-data/qstates.json");
+    const response = await fetch(
+      "http://localhost:8082/answerlist/" + this.userId + "/q"
+    );
     await new Promise(resolve => {
       setTimeout(resolve, 2000);
     });

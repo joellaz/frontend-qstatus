@@ -3,7 +3,7 @@ import { LitElement, html, css } from 'lit-element';
 class AnswerElement extends LitElement {
   static get properties() {
     return {
-      questionId: {
+      questionIterator: {
         type: Number
       }
     };
@@ -12,6 +12,15 @@ class AnswerElement extends LitElement {
   async connectedCallback() {
     super.connectedCallback();
     await this.getQuestionList();
+    let answer = document.getElementById('newAnswer');
+    answer.addEventListener('keypress', function(event) {
+      if (event.keyCode == 13) {
+        console.log('sdfdsf');
+        event.preventDefault();
+        document.getElementById('submit-button').click();
+        document.getElementById('newAnswer').value = '';
+      }
+    });
   }
 
   async getQuestionList() {
@@ -19,17 +28,56 @@ class AnswerElement extends LitElement {
     if (response.status === 200) {
       const dataJson = await response.json();
       this.questionList = dataJson.questionList;
-      this.questionId = 0;
+      this.questionIterator = 0;
+      this.amountQuestions = this.questionList.length;
     }
   }
 
-  sendOpenAnswer(e) {
-    const inputValue = e.target.parentNode.querySelector('input').value;
-
+  sendAnswer(e) {
     let sendableAnswer = {};
-    sendableAnswer.title = 'openquestion';
-    sendableAnswer.text = inputValue;
 
+    sendableAnswer.question = {
+      id: this.questionList[this.questionIterator].id,
+      text: this.questionList[this.questionIterator].text
+    };
+    sendableAnswer.answerList = {
+      id: 1
+    };
+    this.questionList[this.questionIterator].questionType === 'OPEN'
+      ? this.sendOpenAnswer(sendableAnswer, e)
+      : this.sendClosedAnswer(sendableAnswer, e);
+  }
+
+  sendClosedAnswer(sendableAnswer, e) {
+    let options = document.getElementsByName('closed-question');
+    console.log(options);
+    let radio;
+    let value;
+    for (radio of options) {
+      if (radio.checked) {
+        value = radio.value;
+        break;
+      }
+    }
+    if (value) {
+      sendableAnswer.text = value;
+      const request = fetch('http://localhost:8082/closedanswer', {
+        method: 'POST',
+        body: JSON.stringify(sendableAnswer),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      this.questionIterator++;
+      if (this.questionIterator == this.amountQuestions) {
+        window.location = './dashboard_trainee.html';
+      }
+    }
+  }
+
+  sendOpenAnswer(sendableAnswer, e) {
+    sendableAnswer.text = e.target.parentNode.querySelector('input').value;
+    sendableAnswer.title = 'openquestion';
     const request = fetch('http://localhost:8082/openanswer', {
       method: 'POST',
       body: JSON.stringify(sendableAnswer),
@@ -37,7 +85,10 @@ class AnswerElement extends LitElement {
         'Content-Type': 'application/json'
       }
     });
-    this.questionId++;
+    this.questionIterator++;
+    if (this.questionIterator == this.amountQuestions) {
+      window.location = './dashboard_trainee.html';
+    }
   }
 
   render() {
@@ -47,13 +98,13 @@ class AnswerElement extends LitElement {
           <h2 style="margin-top:50px">Vraag</h2>
           <h3>
             ${this.questionList
-              ? this.questionList[this.questionId].text
+              ? this.questionList[this.questionIterator].text
               : 'Loading...'}
           </h3>
           <!--  <button type="button" onclick="loadDoc()">Laat de vraag zien en <br>typ je antwoord hieronder.</button>  -->
           <p>Typ je antwoord in het antwoordveld.</p>
 
-          ${this.questionList[this.questionId].questionType === 'OPEN'
+          ${this.questionList[this.questionIterator].questionType === 'OPEN'
             ? html`
                 <input
                   type="text"
@@ -62,7 +113,11 @@ class AnswerElement extends LitElement {
                   style="font-size:12px; height:200px; width:50%;"
                 />
               `
-            : [, ,].map(
+            : [
+                ...Array(
+                  this.questionList[this.questionIterator].rangeMax + 1
+                ).keys()
+              ].map(
                 /* Create array with amount of items equalling the amount of options of the question */
                 i => html`
                   <!-- Template for closed questions with radios -->
@@ -70,6 +125,7 @@ class AnswerElement extends LitElement {
                   <input
                     type="radio"
                     name="closed-question"
+                    value=${i}
                     id="closed-question-${i}"
                   />
                 `
@@ -79,23 +135,11 @@ class AnswerElement extends LitElement {
             id="submit-button"
             class=""
             style="margin-top:30px"
+            @click=${e => this.sendAnswer(e)}
           >
             Submit
           </button>
         </form>
-        <script>
-          (function() {
-            let answer = document.getElementById('newAnswer');
-            answer.addEventListener('keypress', function(event) {
-              if (event.keyCode == 13) {
-                console.log('sdfdsf');
-                event.preventDefault();
-                document.getElementById('submit-button').click();
-                this.sendOpenAnswer('BOnjour');
-              }
-            });
-          })();
-        </script>
       </div>
     `;
   }
@@ -106,7 +150,6 @@ class AnswerElement extends LitElement {
 }
 
 let questionList;
-
 function showQuestion(question) {}
 
 // Wat gebeurt hier?
