@@ -1,5 +1,5 @@
-import { LitElement, html, css } from "lit-element";
-import "yc-battery/yc-battery.js";
+import { LitElement, html, css } from 'lit-element';
+import 'yc-battery/yc-battery.js';
 
 class YCQstates extends LitElement {
   static get properties() {
@@ -16,7 +16,7 @@ class YCQstates extends LitElement {
       userId: {
         type: Number,
         reflect: true,
-        attribute: "userid"
+        attribute: 'userid'
       }
     };
   }
@@ -46,27 +46,25 @@ class YCQstates extends LitElement {
     super.connectedCallback();
     await this.fetchQStates();
 
-    console.log(this.userId);
-
     // Create an obj from database result that is easier to work with in template :)
     this.dataObj = [
       [
         {
-          name: "IQ",
+          name: 'IQ',
           balance: this.qData.iq_state
         },
         {
-          name: "EQ",
+          name: 'EQ',
           balance: this.qData.eq_state
         }
       ],
       [
         {
-          name: "FQ",
+          name: 'FQ',
           balance: this.qData.fq_state
         },
         {
-          name: "SQ",
+          name: 'SQ',
           balance: this.qData.sq_state
         }
       ]
@@ -74,7 +72,10 @@ class YCQstates extends LitElement {
   }
 
   async fetchQStates() {
-    const response = await fetch("../../assets/mock-data/qstates.json");
+    this.userId = JSON.parse(localStorage.getItem('choosenUser')).id;
+    const response = await fetch(
+      'http://localhost:8082/answerlist/' + this.userId + '/q'
+    );
     await new Promise(resolve => {
       setTimeout(resolve, 2000);
     });
@@ -93,7 +94,7 @@ class YCQstates extends LitElement {
                 </div>
               `
             )
-          : "Loading..."}
+          : 'Loading...'}
       </div>
       <div class="row">
         ${this.dataObj
@@ -105,10 +106,10 @@ class YCQstates extends LitElement {
                 </div>
               `
             )
-          : "Loading..."}
+          : ''}
       </div>
     `;
   }
 }
 
-customElements.define("yc-qstates", YCQstates);
+customElements.define('yc-qstates', YCQstates);

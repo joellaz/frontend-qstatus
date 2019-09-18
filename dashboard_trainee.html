@@ -25,7 +25,7 @@
     />
 
     <!-- yc-qstatus -->
-    <script type="module" src="./components/yc-qstates/yc-qstates.js"></script>
+    <script type="module" src="../../components/yc-qstates/yc-qstates.js"></script>
     <!-- JAVASCRIPT: GET vraag from database. -->
     <script>
       window.onload = function() {
@@ -47,11 +47,12 @@
   <body>
     <yc-navbar></yc-navbar>
 
-</script>
+
 
 <div align="center">
   <div class="flex-container">
     <div>
+      <div class="col-lg-9">
       <div class="bg-transparent border-0">
         <h1 id="myData">Welkom terug Trainee!</h1>
       </div>
@@ -64,7 +65,8 @@
             </div>
           </div>
         </div>
-      <yc-qstates userid="1"></yc-qstates>
+      </div>
+        <div class="col-lg-3"><yc-qstates userId = user></yc-qstates></div>
     </div>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
