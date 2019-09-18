@@ -1,6 +1,21 @@
-import { LitElement, html } from "lit-element";
+import { LitElement, html } from 'lit-element';
 
 class YCNavbar extends LitElement {
+  constructor() {
+    super();
+    this.user = JSON.parse(localStorage.getItem('choosenUser'));
+  }
+
+  async connectedCallback() {
+    super.connectedCallback();
+    await this.render();
+    if (this.user.username === 'Anneloes') {
+      document
+        .getElementById('dashboard-url')
+        .setAttribute('href', './dashboard_manager.html');
+    }
+  }
+
   render() {
     return html`
       <nav
@@ -29,9 +44,13 @@ class YCNavbar extends LitElement {
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="./dashboard_trainee.html"
-                >Home <span class="sr-only">(current)</span></a
+              <a
+                class="nav-link"
+                id="dashboard-url"
+                href="./dashboard_trainee.html"
               >
+                Home <span class="sr-only">(current)</span>
+              </a>
             </li>
           </ul>
           <ul class="navbar-nav ml-auto">
@@ -51,4 +70,4 @@ class YCNavbar extends LitElement {
   }
 }
 
-customElements.define("yc-navbar", YCNavbar);
+customElements.define('yc-navbar', YCNavbar);

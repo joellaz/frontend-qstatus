@@ -29,21 +29,7 @@ class AnswerElement extends LitElement {
       this.questionList = dataJson.questionList;
       this.questionIterator = 0;
       this.amountQuestions = this.questionList.length;
-      this.creatAnswerList();
     }
-  }
-
-  creatAnswerList() {
-    let sendableAnswer = {};
-    sendableAnswer.trainee = JSON.parse(localStorage.getItem('choosenUser'));
-    console.log('BONJOUR');
-    const request = fetch('http://localhost:8082/answerlist', {
-      method: 'POST',
-      body: JSON.stringify(sendableAnswer),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
   }
 
   sendAnswer(e) {
