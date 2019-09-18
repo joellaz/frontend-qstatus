@@ -6,7 +6,8 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "jquery": "^3.4.1",
-    "lit-element": "^2.2.1"
+    "lit-element": "^2.2.1",
+    "yc-battery": "^0.1.2"
   },
   "devDependencies": {
     "es-dev-server": "^1.10.4"
