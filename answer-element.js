@@ -29,7 +29,6 @@ class AnswerElement extends LitElement {
       this.questionList = dataJson.questionList;
       this.questionIterator = 0;
       this.amountQuestions = this.questionList.length;
-      this.sendableAnswerList = [];
     }
   }
 
@@ -43,9 +42,6 @@ class AnswerElement extends LitElement {
     sendableAnswer.answerList = {
       id: 1
     };
-    sendableAnswer.questionType = this.questionList[
-      this.questionIterator
-    ].questionType;
     this.questionList[this.questionIterator].questionType === 'OPEN'
       ? this.sendOpenAnswer(sendableAnswer, e)
       : this.sendClosedAnswer(sendableAnswer, e);
@@ -67,7 +63,7 @@ class AnswerElement extends LitElement {
       }
     }
     if (value) {
-      sendableAnswer.text = value;
+      sendableAnswer.response = value;
       const request = fetch('http://localhost:8082/closedanswer', {
         method: 'POST',
         body: JSON.stringify(sendableAnswer),
