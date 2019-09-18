@@ -19,27 +19,11 @@
 
   <!-- Navbar inladen -->
   <script type="module" src="./components/navbar/YCNavbar.js"></script>
+  <script src="./javascript/AnswerClosedQuestion.js"></script>
 </head>
 
 <body>
   <yc-navbar></yc-navbar>
-
-  <script>
-    // Fetching the question with id.
-    const request = fetch('http://localhost:8082/closedquestion/4');
-    request.then(response => {
-      if (response.status === 200) {
-        response.json().then(result => {
-          jsonData = result.text;
-          console.log(jsonData);
-
-          // Store acquired data in the right element (myData), so that it can be displayed.
-          var mainContainer = document.getElementById("myData");
-          mainContainer.innerHTML = jsonData;
-        });
-      }
-    });
-  </script>
 
   <div align="center">
     <form>
