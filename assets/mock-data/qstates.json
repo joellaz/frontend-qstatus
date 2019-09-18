@@ -1,8 +1,20 @@
-{
-  "id": 1,
-  "trainee_name": "Joëlle Zweekhorst",
-  "iq_state": 1,
-  "eq_state": 0.3,
-  "fq_state": 0.5,
-  "sq_state": 0
-}
+[
+  {
+    "iq_state": 0.0,
+    "eq_state": 0.0,
+    "fq_state": 0.0,
+    "sq_state": 0.0
+  },
+  {
+    "iq_state": 0.75,
+    "eq_state": 0.5,
+    "fq_state": 0.5,
+    "sq_state": 0.25
+  },
+  {
+    "iq_state": 0.5,
+    "eq_state": 0.75,
+    "fq_state": 0.75,
+    "sq_state": 0.5
+  }
+]
