@@ -105,7 +105,7 @@ class YCQstates extends LitElement {
                 </div>
               `
             )
-          : 'Loading...'}
+          : ''}
       </div>
     `;
   }
