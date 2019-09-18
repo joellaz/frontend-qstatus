@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Open vraag</title>
+  <title>Open vraag</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Vragenlijst</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Vragenlijst</title>
 
-  <!-- Bootstrap inladen. -->
-  <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- Bootstrap inladen. -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
 
-  <!-- Eigen stylesheet inladen. -->
-  <link rel="stylesheet" type="text/css" href="./stylesheet.css" />
+    <!-- Eigen stylesheet inladen. -->
+    <link rel="stylesheet" type="text/css" href="./stylesheet.css" />
 
-  <!-- Lato font inladen. -->
-  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-  <script type="module" src="./components/navbar/YCNavbar.js"></script>
+    <!-- Lato font inladen. -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="./components/navbar/YCNavbar.js"></script>
+  </head>
 
+  <body>
+    <yc-navbar></yc-navbar>
 
-</head>
-
-<body>
-  <yc-navbar></yc-navbar>
-
-  <!-- JAVASCRIPT: GET vraag from database.
+    <!-- JAVASCRIPT: GET vraag from database.
   <script>
     // Fetching the question with id 8.
     const request = fetch('http://localhost:8082/openquestion/');
@@ -78,11 +83,9 @@
     }
   </script> -->
 
-  <script type="module" src="answer-element.js"></script>
-  <answer-element></answer-element>
-  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
+    <script type="module" src="./javascript/answer-element.js"></script>
+    <answer-element></answer-element>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
