@@ -74,7 +74,9 @@ class YCQstates extends LitElement {
   }
 
   async fetchQStates() {
-    const response = await fetch("../../assets/mock-data/qstates.json");
+    const response = await fetch(
+      "http://localhost:8082/answerlist/" + this.userId + "/q"
+    );
     await new Promise(resolve => {
       setTimeout(resolve, 2000);
     });
