@@ -1,18 +1,18 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html } from "lit-element";
 
 class YCNavbar extends LitElement {
   constructor() {
     super();
-    this.user = JSON.parse(localStorage.getItem('choosenUser'));
+    this.user = JSON.parse(localStorage.getItem("choosenUser"));
   }
 
   async connectedCallback() {
     super.connectedCallback();
     await this.render();
-    if (this.user.username === 'Anneloes') {
+    if (this.user.username === "Anneloes") {
       document
-        .getElementById('dashboard-url')
-        .setAttribute('href', './dashboard_manager.html');
+        .getElementById("dashboard-url")
+        .setAttribute("href", "./dashboard_manager.html");
     }
   }
 
@@ -68,6 +68,14 @@ class YCNavbar extends LitElement {
   createRenderRoot() {
     return this;
   }
+
+  choosePage() {
+    user = JSON.parse(localStorage.getItem("choosenUser"));
+    if (user.hasOwnProperty("team_id")) {
+      return "./dashboard_trainee.html";
+    }
+    return "./dashboard_manager.html";
+  }
 }
 
-customElements.define('yc-navbar', YCNavbar);
+customElements.define("yc-navbar", YCNavbar);
