@@ -39,7 +39,22 @@
           console.log(mainContainer);
           console.log(user);
         }
+        creatAnswerList();
       };
+
+
+      function creatAnswerList() {
+        let sendableAnswer = {};
+        sendableAnswer.trainee = JSON.parse(localStorage.getItem('choosenUser'));
+        console.log('BONJOUR');
+        const request = fetch('http://localhost:8082/answerlist', {
+          method: 'POST',
+          body: JSON.stringify(sendableAnswer),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+      }
     </script>
     <script type="module" src="./components/navbar/YCNavbar.js"></script>
   </head>
