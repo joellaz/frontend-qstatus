@@ -34,17 +34,17 @@
     <!-- POST vraag naar database. -->
     <script>
       function sendQuestion() {
-        var deDom = document.getElementsByTagName("html");
+        var deDom = document.getElementsByTagName('html');
         console.log(deDom);
-        var mainContainer = document.getElementById("newQuestion");
+        var mainContainer = document.getElementById('newQuestion');
         console.log(mainContainer.value);
-        var IQContainer = document.getElementById("IQstate");
+        var IQContainer = document.getElementById('IQstate');
         console.log(IQContainer.value);
-        var SQContainer = document.getElementById("SQstate");
+        var SQContainer = document.getElementById('SQstate');
         console.log(SQContainer.value);
-        var FQContainer = document.getElementById("FQstate");
+        var FQContainer = document.getElementById('FQstate');
         console.log(FQContainer.value);
-        var EQContainer = document.getElementById("EQstate");
+        var EQContainer = document.getElementById('EQstate');
         console.log(EQContainer.value);
 
         let sendableQuestion = {};
@@ -54,32 +54,32 @@
         sendableQuestion.iqWeight = iqContainer.value;
         sendableQuestion.fqWeight = fqContainer.value;
 
-        if (document.getElementById("openQ").checked) {
-          const request = fetch("http://localhost:8082/openquestion", {
-            method: "POST",
+        if (document.getElementById('openQ').checked) {
+          const request = fetch('http://localhost:8082/openquestion', {
+            method: 'POST',
             body: JSON.stringify(sendableQuestion),
             headers: {
-              "Content-Type": "application/json"
+              'Content-Type': 'application/json'
             }
           });
-        } else if (document.getElementById("closedQ").checked) {
-          const request = fetch("http://localhost:8082/closedquestion", {
-            method: "POST",
+        } else if (document.getElementById('closedQ').checked) {
+          const request = fetch('http://localhost:8082/closedquestion', {
+            method: 'POST',
             body: JSON.stringify(sendableQuestion),
             headers: {
-              "Content-Type": "application/json"
+              'Content-Type': 'application/json'
             }
           });
         }
 
-        location.href = "./make_question.html";
+        location.href = './make_question.html';
 
         request.then(response => {
           if (response.status === 201) {
             response
               .json()
               .then(result =>
-                console.log("Question succesfully added: " + result)
+                console.log('Question succesfully added: ' + result)
               );
           }
         });
@@ -92,7 +92,7 @@
         <p>
           Schrijf hier een nieuwe vraag voor je trainee. <br />
           Hierbij kan je kiezen tussen een vraag met een open antwoord of een
-          vraag met een antwoord in een range van 0 tot 5 (Gesloten Vraag).<br />
+          vraag met een antwoord in een range van 0 tot 4 (Gesloten Vraag).<br />
           Daarnaast kan je ook invullen in hoeverre de betreffende vraag een
           invloed uit kan oefenen op een *q.
         </p>
