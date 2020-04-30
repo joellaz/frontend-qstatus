@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lit-element": "^2.2.1",
     "yc-battery": "^0.1.2"
   },
